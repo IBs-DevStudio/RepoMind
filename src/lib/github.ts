@@ -38,17 +38,7 @@ async function summarizeCommit(owner: string, repo: string, sha: string) {
   return aiSummariseCommit(String(res.data));
 }
 
-type NewCommit = {
-  projectId: string;
-  commitHash: string;
-  commitMessage: string;
-  commitAuthorName: string;
-  commitAuthorAvatar: string;
-  commitDate: Date;
-  summary: string;
-};
-
-export async function pollCommits(projectId: string) {
+async function runPoll(projectId: string) {
   const project = await db.project.findUnique({
     where: { id: projectId },
     select: { githubUrl: true },
@@ -64,30 +54,42 @@ export async function pollCommits(projectId: string) {
   });
   const seen = new Set(existing.map((e) => e.commitHash));
   const fresh = latest.filter((c) => !seen.has(c.commitHash));
-  if (fresh.length === 0) return;
 
-  // Free models are rate limited, so summarize one commit at a time.
-  // Commits that fail are not stored, so they are retried on the next poll.
-  const rows: NewCommit[] = [];
+  // Free models are rate limited, so summarize one commit at a time and save
+  // each one right away. Commits that fail are retried on the next poll.
   for (const c of fresh) {
     try {
       const summary = await summarizeCommit(owner, repo, c.commitHash);
-      rows.push({
-        projectId,
-        commitHash: c.commitHash,
-        commitMessage: c.commitMessage,
-        commitAuthorName: c.commitAuthorName,
-        commitAuthorAvatar: c.commitAuthorAvatar,
-        commitDate: new Date(c.commitDate),
-        summary,
+      await db.commit.createMany({
+        data: [
+          {
+            projectId,
+            commitHash: c.commitHash,
+            commitMessage: c.commitMessage,
+            commitAuthorName: c.commitAuthorName,
+            commitAuthorAvatar: c.commitAuthorAvatar,
+            commitDate: new Date(c.commitDate),
+            summary,
+          },
+        ],
+        skipDuplicates: true,
       });
     } catch (e) {
       console.error("commit summary failed", c.commitHash, e);
-      if (String(e).includes("429")) break; // rate limited, retry on next poll
     }
   }
+}
 
-  if (rows.length > 0) {
-    await db.commit.createMany({ data: rows, skipDuplicates: true });
+// Only one poll per project at a time, so overlapping page loads
+// don't multiply the requests to the free models.
+const running = new Set<string>();
+
+export async function pollCommits(projectId: string) {
+  if (running.has(projectId)) return;
+  running.add(projectId);
+  try {
+    await runPoll(projectId);
+  } finally {
+    running.delete(projectId);
   }
 }
