@@ -1,0 +1,67 @@
+import { after } from "next/server";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
+
+import { parseGithubUrl, pollCommits } from "@/lib/github";
+import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+
+export const projectRouter = createTRPCRouter({
+  createProject: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().min(1),
+        githubUrl: z.string().url(),
+        githubToken: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        parseGithubUrl(input.githubUrl);
+      } catch {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid GitHub URL" });
+      }
+
+      const project = await ctx.db.project.create({
+        data: {
+          name: input.name,
+          githubUrl: input.githubUrl,
+          members: { create: { userId: ctx.userId, role: "OWNER" } },
+        },
+      });
+
+      after(() => {
+        pollCommits(project.id).catch(console.error);
+      });
+
+      return project;
+    }),
+
+  getProjects: protectedProcedure.query(({ ctx }) =>
+    ctx.db.project.findMany({
+      where: {
+        deletedAt: null,
+        members: { some: { userId: ctx.userId } },
+      },
+    }),
+  ),
+
+  getCommits: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      after(() => {
+        pollCommits(input.projectId).catch(console.error);
+      });
+
+      return ctx.db.commit.findMany({
+        where: { projectId: input.projectId },
+        orderBy: { commitDate: "desc" },
+      });
+    }),
+});

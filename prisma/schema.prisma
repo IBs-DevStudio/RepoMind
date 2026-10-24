@@ -11,11 +11,74 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum CreditReason {
+  SIGNUP
+  PURCHASE
+  USAGE
+  REFUND
+}
 
-    @@index([name])
+model User {
+  id           String        @id // Clerk user id
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  imageUrl     String?
+  firstName    String?
+  lastName     String?
+  emailAddress String        @unique
+  credits      CreditEntry[]
+  projects     ProjectMember[]
+}
+
+model CreditEntry {
+  id        String       @id @default(cuid())
+  userId    String
+  delta     Int
+  reason    CreditReason
+  createdAt DateTime     @default(now())
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum MemberRole {
+  OWNER
+  MEMBER
+}
+
+model Project {
+  id        String          @id @default(cuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  name      String
+  githubUrl String
+  deletedAt DateTime?
+  members   ProjectMember[]
+  commits   Commit[]
+}
+
+model ProjectMember {
+  userId    String
+  projectId String
+  role      MemberRole @default(MEMBER)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@id([userId, projectId])
+}
+
+model Commit {
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  projectId          String
+  project            Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  commitMessage      String
+  commitHash         String
+  commitAuthorName   String
+  commitAuthorAvatar String
+  commitDate         DateTime
+  summary            String
+
+  @@unique([projectId, commitHash])
 }
