@@ -24,11 +24,15 @@ function timeAgo(input: Date | string) {
 }
 
 // Turns the model's "* text (file)" bullets into clean lines.
+const META =
+  /\b(the diff|this diff|i need to|i should|let me|at most 5|bullet points?)\b/i;
+
 function parseSummary(summary: string) {
   return summary
     .split("\n")
     .map((l) => l.replace(/^\s*[*\-•]\s*/, "").trim())
     .filter(Boolean)
+    .filter((l) => !META.test(l))
     .map((line) => {
       const m = /^(.*?)\s*\(([^()]*[./][^()]*)\)\.?$/.exec(line);
       return m?.[1] && m[2]
