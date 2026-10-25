@@ -44,7 +44,9 @@ export function AppSidebar() {
           <Image src="/logo.png" alt="logo" width={40} height={40} />
           {open && (
             <>
-              <h1 className="text-primary/80 text-xl font-bold">RepoLogue</h1>
+              <h1 className="text-primary/80 text-xl font-bold">
+                Repo<span className="text-white">Logue</span>
+              </h1>
               <SidebarTrigger className="ml-auto" />
             </>
           )}

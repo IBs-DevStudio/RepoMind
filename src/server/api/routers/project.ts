@@ -195,4 +195,43 @@ export const projectRouter = createTRPCRouter({
 
       return meeting;
     }),
+  archiveProject: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+      if (member.role !== "OWNER") {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Only the project owner can archive it",
+        });
+      }
+
+      return ctx.db.project.update({
+        where: { id: input.projectId },
+        data: { deletedAt: new Date() },
+      });
+    }),
+
+  getTeamMembers: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      return ctx.db.projectMember.findMany({
+        where: { projectId: input.projectId },
+        include: {
+          user: { select: { firstName: true, imageUrl: true } },
+        },
+      });
+    }),
 });

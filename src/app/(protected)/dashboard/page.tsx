@@ -8,6 +8,9 @@ import { useProject } from "@/hooks/use-project";
 import AskQuestionCard from "./ask-question-card";
 import CommitLog from "./commit-log";
 import MeetingCard from "./meeting-card";
+import TeamMembers from "./team-members";
+import InviteButton from "./invite-button";
+import ArchiveButton from "./archive-button";
 
 export default function DashboardPage() {
   const { project } = useProject();
@@ -37,16 +40,16 @@ export default function DashboardPage() {
         <div className="h-4" />
 
         <div className="flex items-center gap-4">
-          {/* TeamMembers */}
-          {/* InviteButton */}
-          {/* ArchiveButton */}
+          <TeamMembers />
+          <InviteButton />
+          <ArchiveButton />
         </div>
       </div>
 
       <div className="mt-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
           <AskQuestionCard />
-         <MeetingCard />
+          <MeetingCard />
         </div>
       </div>
 
