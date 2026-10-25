@@ -39,8 +39,6 @@ type Msg =
 const QUICK_PROMPTS = [
   "How is user authentication & session handled?",
   "Explain the data flow from API endpoints to the database",
-  "Where are database models and Prisma schemas defined?",
-  "What third-party libraries and SDK integrations are used?",
 ];
 
 interface AskQuestionCardProps {

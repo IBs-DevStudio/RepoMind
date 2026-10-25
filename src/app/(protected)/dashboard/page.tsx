@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { useProject } from "@/hooks/use-project";
 import AskQuestionCard from "./ask-question-card";
 import CommitLog from "./commit-log";
+import MeetingCard from "./meeting-card";
 
 export default function DashboardPage() {
   const { project } = useProject();
@@ -45,7 +46,7 @@ export default function DashboardPage() {
       <div className="mt-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
           <AskQuestionCard />
-          {/* MeetingCard */}
+         <MeetingCard />
         </div>
       </div>
 
