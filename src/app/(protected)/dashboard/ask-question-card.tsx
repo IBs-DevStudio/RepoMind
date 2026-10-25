@@ -343,7 +343,7 @@ export default function AskQuestionCard({
                             </div>
                             <div>
                                 <CardTitle className="text-base sm:text-lg font-semibold tracking-tight">
-                                    Ask RepoLogue
+                                    Ask Your <span className="text-primary/80 text-xl font-bold">Repo</span>
                                 </CardTitle>
                                 <p className="text-xs text-muted-foreground">
                                     Have a meaningful conversation with your entire engineering workflow.
@@ -353,7 +353,7 @@ export default function AskQuestionCard({
 
                         <span className="hidden sm:inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[11px] font-medium text-primary">
                             <Zap className="size-3" />
-                            Semantic AST
+                            Ask AI
                         </span>
                     </div>
                 </CardHeader>
@@ -381,9 +381,7 @@ export default function AskQuestionCard({
                         {/* Quick Starters Tray */}
                         {showQuickPrompts && (
                             <div className="space-y-1.5 pt-1">
-                                <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
-                                    <span>Suggested inquiries:</span>
-                                </p>
+                                
                                 <div className="flex flex-wrap gap-1.5">
                                     {QUICK_PROMPTS.map((prompt) => (
                                         <button

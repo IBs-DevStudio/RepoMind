@@ -45,7 +45,7 @@ export function AppSidebar() {
           {open && (
             <>
               <h1 className="text-primary/80 text-xl font-bold">
-                Repo<span className="text-white">Logue</span>
+                Repo<span className="text-blue">Logue</span>
               </h1>
               <SidebarTrigger className="ml-auto" />
             </>
