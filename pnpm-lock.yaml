@@ -41,6 +41,9 @@ importers:
       '@uiw/react-md-editor':
         specifier: ^4.1.3
         version: 4.1.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      assemblyai:
+        specifier: ^4.41.7
+        version: 4.41.7
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1603,6 +1606,10 @@ packages:
   arraybuffer.prototype.slice@1.0.4:
     resolution: {integrity: sha512-BNoCY6SXXPQ7gF2opIP4GBE+Xw7U+pHMYKuzjgCN3GwiaIR09UUeKfheyIry77QtrCBlC0KK0q5/TER/tYh3PQ==}
     engines: {node: '>= 0.4'}
+
+  assemblyai@4.41.7:
+    resolution: {integrity: sha512-/g8X6IT+D328/abTTjwagreuaZMY1bXuO69L6UtowaEPO/1TR7GwO7LIfVUmE03fO+kVsidL80omf/brrZ/dJw==}
+    engines: {node: '>=18'}
 
   ast-types-flow@0.0.8:
     resolution: {integrity: sha512-OH/2E5Fg20h2aPrbe+QL8JZQFko0YZaF+j4mnQ7BGhfavO7OpSLa8a0y9sBwomHdSbkhTS8TQNayBfnW5DwbvQ==}
@@ -5952,6 +5959,13 @@ snapshots:
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
       is-array-buffer: 3.0.5
+
+  assemblyai@4.41.7:
+    dependencies:
+      ws: 8.22.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   ast-types-flow@0.0.8: {}
 

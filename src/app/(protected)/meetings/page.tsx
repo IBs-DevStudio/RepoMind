@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useProject } from "@/hooks/use-project";
+import { useRefetch } from "@/hooks/use-refetch";
 import { api } from "@/trpc/react";
 import MeetingCard from "../dashboard/meeting-card";
 
@@ -14,6 +16,9 @@ export default function MeetingsPage() {
     { projectId },
     { enabled: !!projectId, refetchInterval: 4000 },
   );
+
+  const refetch = useRefetch();
+  const deleteMeeting = api.project.deleteMeeting.useMutation();
 
   return (
     <div className="space-y-6">
@@ -50,11 +55,32 @@ export default function MeetingsPage() {
               </div>
             </div>
 
-            <Link href={`/meetings/${meeting.id}`}>
-              <Button size="sm" variant="outline">
-                View Meeting
+            <div className="flex flex-none items-center gap-x-3">
+              <Link href={`/meetings/${meeting.id}`}>
+                <Button size="sm" variant="outline">
+                  View Meeting
+                </Button>
+              </Link>
+              <Button
+                size="sm"
+                variant="destructive"
+                disabled={deleteMeeting.isPending}
+                onClick={() =>
+                  deleteMeeting.mutate(
+                    { meetingId: meeting.id },
+                    {
+                      onSuccess: () => {
+                        toast.success("Meeting deleted");
+                        void refetch();
+                      },
+                      onError: () => toast.error("Could not delete meeting"),
+                    },
+                  )
+                }
+              >
+                Delete
               </Button>
-            </Link>
+            </div>
           </li>
         ))}
       </ul>
