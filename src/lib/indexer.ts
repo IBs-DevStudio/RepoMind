@@ -5,7 +5,8 @@ import { db } from "@/server/db";
 import { octokit, parseGithubUrl } from "@/lib/github";
 import { embedTexts, toVector } from "@/lib/embeddings";
 
-const MAX_FILES = 300;
+const MAX_FILES = 120;
+const EMBED_CHARS = 3_000; // how much of each file is embedded
 const OK_EXT = /\.(ts|tsx|js|jsx|mjs|py|go|rs|java|kt|rb|php|cs|cpp|c|h|swift|md|json|ya?ml|toml|sql|prisma|css|html|sh)$/i;
 const SKIP = /(^|\/)(node_modules|dist|build|\.next|\.git|vendor|coverage|generated)\//;
 const LOCK = /(lock\.json|lock\.yaml|\.lock|\.min\.\w+)$/;
@@ -32,9 +33,14 @@ async function listFiles(owner: string, repo: string) {
     .slice(0, MAX_FILES) as { path: string; sha: string }[];
 }
 
+// Projects fully indexed since the server started.
+const completed = new Set<string>();
+
 async function runIndex(projectId: string) {
-  const already = await db.sourceCodeEmbedding.count({ where: { projectId } });
-  if (already > 0) return;
+  if (completed.has(projectId)) return;
+
+  // Drop half-written rows (no vector yet) left by an interrupted run.
+  await db.$executeRaw`DELETE FROM "SourceCodeEmbedding" WHERE "projectId" = ${projectId} AND embedding IS NULL`;
 
   const project = await db.project.findUnique({
     where: { id: projectId },
@@ -45,8 +51,16 @@ async function runIndex(projectId: string) {
   const { owner, repo } = parseGithubUrl(project.githubUrl);
   const files = await listFiles(owner, repo);
 
-  for (let i = 0; i < files.length; i += 20) {
-    const batch = files.slice(i, i + 20);
+  // Resume: only index files that don't have a vector yet.
+  const existing = await db.sourceCodeEmbedding.findMany({
+    where: { projectId },
+    select: { fileName: true },
+  });
+  const have = new Set(existing.map((e) => e.fileName));
+  const todo = files.filter((f) => !have.has(f.path));
+
+  for (let i = 0; i < todo.length; i += 10) {
+    const batch = todo.slice(i, i + 10);
     const loaded = await Promise.all(
       batch.map(async (f) => {
         const { data } = await octokit.rest.git.getBlob({ owner, repo, file_sha: f.sha });
@@ -60,7 +74,7 @@ async function runIndex(projectId: string) {
     if (usable.length === 0) continue;
 
     const vectors = await embedTexts(
-      usable.map((f) => `File: ${f.fileName}\n${f.sourceCode.slice(0, 8_000)}`),
+      usable.map((f) => `File: ${f.fileName}\n${f.sourceCode.slice(0, EMBED_CHARS)}`),
       "RETRIEVAL_DOCUMENT",
     );
 
@@ -72,6 +86,8 @@ async function runIndex(projectId: string) {
       await db.$executeRaw`UPDATE "SourceCodeEmbedding" SET embedding = ${toVector(v)}::vector WHERE id = ${rows[j]!.id}`;
     }
   }
+
+  completed.add(projectId);
 }
 
 // One index run per project at a time.
@@ -83,9 +99,8 @@ export async function indexRepo(projectId: string) {
   try {
     await runIndex(projectId);
   } catch (e) {
+    // Keep finished files. The next dashboard load resumes from here.
     console.error("indexing failed", projectId, e);
-    // Remove partial data so the next load starts a clean re-index.
-    await db.sourceCodeEmbedding.deleteMany({ where: { projectId } }).catch(() => undefined);
   } finally {
     running.delete(projectId);
   }
