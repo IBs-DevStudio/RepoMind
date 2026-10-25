@@ -125,17 +125,16 @@ export default function QAPage() {
                 <div className="relative z-10 flex flex-col gap-3">
                     <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary w-fit">
                         <Sparkles className="size-3 text-primary" />
-                        <span>Codebase Intelligence Hub</span>
+                        <span>RepoLogue Intelligence Hub</span>
                     </div>
 
                     <div className="space-y-1">
                         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-                            Deep Architectural Q&A
+                            RepoLogue Architectural Q&A
                         </h1>
 
                         <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                            Ask architectural questions, trace complex execution paths across files, and build
-                            a permanent repository knowledge archive for your engineering team.
+                            Have a meaningful conversation with your entire engineering workflow. Ask architectural questions, trace complex execution paths, and preserve repository knowledge.
                         </p>
                     </div>
 
@@ -478,7 +477,7 @@ export default function QAPage() {
                             <div className="flex items-center justify-between border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
                                 <span className="flex items-center gap-1.5 font-mono text-[11px]">
                                     <span className="size-1.5 rounded-full bg-emerald-500" />
-                                    RepoMind Permanent Knowledge Record
+                                    RepoLogue Permanent Knowledge Record
                                 </span>
                                 <span className="text-[11px]">
                                     Preserved across repository iterations

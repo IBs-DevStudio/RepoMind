@@ -148,7 +148,7 @@ export default function AskQuestionCard({
                             <div className="flex flex-wrap items-center justify-between gap-2">
                                 <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary">
                                     <Sparkles className="size-3.5 animate-pulse text-primary" />
-                                    <span>REPO-MIND NEURAL SYNTHESIS</span>
+                                    <span>REPOLOGUE NEURAL SYNTHESIS</span>
                                     <span className="text-muted-foreground/60">•</span>
                                     <span className="text-muted-foreground font-normal">AST & Embeddings Active</span>
                                 </div>
@@ -175,12 +175,11 @@ export default function AskQuestionCard({
                                         <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
                                             <Image src="/logo.png" alt="logo" width={22} height={22} />
                                         </div>
-                                        Architectural Code Intelligence
+                                        RepoLogue Code Intelligence
                                     </DialogTitle>
                                     {/* The requested prominent Tagline / Sentence */}
                                     <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl font-normal leading-relaxed">
-                                        Synthesizing high-precision architectural insights directly from your repository&apos;s
-                                        abstract syntax trees, semantic vector embeddings, and commit graph.
+                                        Have a meaningful conversation with your entire engineering workflow. Synthesizing high-precision architectural insights directly from your repository&apos;s AST, vectors, and commit graph.
                                     </p>
                                 </div>
 
@@ -320,7 +319,7 @@ export default function AskQuestionCard({
                     <div className="flex items-center justify-between border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1.5 font-mono text-[11px]">
                             <span className="size-1.5 rounded-full bg-emerald-500" />
-                            RepoMind Intelligence • Live Project Grounding
+                            RepoLogue Intelligence • Live Project Grounding
                         </span>
                         <span className="hidden sm:inline text-[11px]">
                             Saved answers become permanent team knowledge
@@ -344,10 +343,10 @@ export default function AskQuestionCard({
                             </div>
                             <div>
                                 <CardTitle className="text-base sm:text-lg font-semibold tracking-tight">
-                                    Ask Codebase Intelligence
+                                    Ask RepoLogue
                                 </CardTitle>
                                 <p className="text-xs text-muted-foreground">
-                                    Ask in plain English. RepoMind synthesizes answers directly from repository source code.
+                                    Have a meaningful conversation with your entire engineering workflow.
                                 </p>
                             </div>
                         </div>

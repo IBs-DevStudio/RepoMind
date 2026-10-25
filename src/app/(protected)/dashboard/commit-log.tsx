@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Sparkles } from "lucide-react";
+import { ExternalLink, Loader2, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { useProject } from "@/hooks/use-project";
@@ -61,7 +61,52 @@ export default function CommitLog() {
             Latest commits with AI-generated summaries
           </p>
         </div>
+
+        {isLoading && (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary">
+            <Loader2 className="size-3 animate-spin" />
+            Loading commits...
+          </span>
+        )}
       </div>
+
+      {isLoading && (
+        <ol className="before:bg-border relative space-y-4 before:absolute before:top-4 before:bottom-4 before:left-4 before:w-px">
+          {[1, 2, 3].map((i) => (
+            <li key={i} className="relative flex gap-4">
+              <div className="bg-muted ring-background relative z-10 size-8 flex-none rounded-full ring-4 animate-pulse" />
+
+              <div className="bg-card min-w-0 flex-1 rounded-xl border p-4 shadow-sm space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="h-3.5 w-28 animate-pulse rounded bg-muted/80" />
+                    <div className="h-3 w-20 animate-pulse rounded bg-muted/50" />
+                  </div>
+                  <div className="h-5 w-16 animate-pulse rounded-md bg-muted/60" />
+                </div>
+
+                <div className="h-4 w-3/4 animate-pulse rounded bg-muted/70" />
+
+                <div className="space-y-2 pt-1">
+                  <div className="flex items-center gap-2">
+                    <div className="size-1.5 rounded-full bg-primary/40 animate-pulse" />
+                    <div className="h-3 w-4/5 animate-pulse rounded bg-muted/60" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="size-1.5 rounded-full bg-primary/40 animate-pulse" />
+                    <div className="h-3 w-3/5 animate-pulse rounded bg-muted/50" />
+                  </div>
+                </div>
+
+                <div className="bg-primary/5 mt-2 flex items-center gap-2 rounded-lg p-2.5">
+                  <Sparkles className="size-3.5 text-primary/40 animate-pulse flex-none" />
+                  <div className="h-3 w-2/3 animate-pulse rounded bg-primary/10" />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
 
       {!isLoading && commits?.length === 0 && (
         <div className="text-muted-foreground rounded-xl border border-dashed p-8 text-center text-sm">

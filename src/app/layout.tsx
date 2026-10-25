@@ -8,8 +8,8 @@ import { Toaster } from "sonner";
 import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
-  title: "GitHub Codebase AI",
-  description: "Chat with your codebase",
+  title: "RepoLogue",
+  description: "Have a meaningful conversation with your entire engineering workflow.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
