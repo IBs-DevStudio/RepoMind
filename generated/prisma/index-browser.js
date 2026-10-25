@@ -185,6 +185,28 @@ exports.Prisma.QuestionScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.MeetingScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  meetingUrl: 'meetingUrl',
+  projectId: 'projectId',
+  status: 'status'
+};
+
+exports.Prisma.IssueScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  start: 'start',
+  end: 'end',
+  gist: 'gist',
+  headline: 'headline',
+  summary: 'summary',
+  meetingId: 'meetingId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -222,6 +244,11 @@ exports.MemberRole = exports.$Enums.MemberRole = {
   MEMBER: 'MEMBER'
 };
 
+exports.MeetingStatus = exports.$Enums.MeetingStatus = {
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   CreditEntry: 'CreditEntry',
@@ -229,7 +256,9 @@ exports.Prisma.ModelName = {
   ProjectMember: 'ProjectMember',
   Commit: 'Commit',
   SourceCodeEmbedding: 'SourceCodeEmbedding',
-  Question: 'Question'
+  Question: 'Question',
+  Meeting: 'Meeting',
+  Issue: 'Issue'
 };
 
 /**

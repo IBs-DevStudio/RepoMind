@@ -114,4 +114,47 @@ export const projectRouter = createTRPCRouter({
         orderBy: { createdAt: "desc" },
       });
     }),
+
+  uploadMeeting: protectedProcedure
+    .input(
+      z.object({
+        projectId: z.string(),
+        meetingUrl: z.string().url(),
+        name: z.string().min(1),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      return ctx.db.meeting.create({
+        data: {
+          meetingUrl: input.meetingUrl,
+          projectId: input.projectId,
+          name: input.name,
+          status: "PROCESSING",
+        },
+      });
+    }),
+
+  getMeetings: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      return ctx.db.meeting.findMany({
+        where: { projectId: input.projectId },
+        include: { issues: true },
+        orderBy: { createdAt: "desc" },
+      });
+    }),
 });
