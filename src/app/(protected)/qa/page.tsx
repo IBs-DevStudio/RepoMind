@@ -111,42 +111,74 @@ export default function QAPage() {
         ))}
       </div>
 
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent className="w-full overflow-y-auto sm:max-w-3xl">
+           <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent className="w-full gap-0 overflow-y-auto p-0 sm:!max-w-5xl lg:!w-[70vw]">
           {selected && (
-            <>
-              <SheetHeader>
-                <SheetTitle className="pr-8 text-lg leading-snug">
+            <div className="flex min-h-full flex-col">
+              {/* Header */}
+              <SheetHeader className="bg-muted/40 space-y-3 border-b p-6 pr-14">
+                <SheetTitle className="text-xl leading-snug font-semibold tracking-tight">
                   {selected.question}
                 </SheetTitle>
-                <p className="text-muted-foreground text-xs">
-                  Asked by {selected.user.firstName ?? "a teammate"} on{" "}
-                  {formatDate(selected.createdAt)}
-                </p>
+                <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                  {selected.user.imageUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={selected.user.imageUrl}
+                      alt={selected.user.firstName ?? "User"}
+                      className="size-5 rounded-full"
+                    />
+                  ) : (
+                    <div className="bg-primary/10 text-primary flex size-5 items-center justify-center rounded-full text-[10px] font-medium">
+                      {selected.user.firstName?.[0] ?? "U"}
+                    </div>
+                  )}
+                  <span>
+                    Asked by{" "}
+                    <span className="text-foreground font-medium">
+                      {selected.user.firstName ?? "a teammate"}
+                    </span>
+                  </span>
+                  <span>•</span>
+                  <span>{formatDate(selected.createdAt)}</span>
+                </div>
               </SheetHeader>
 
-              <div className="space-y-6 p-4 pt-0">
-                <div className="bg-card rounded-xl border p-5 shadow-sm">
-                  <div data-color-mode="light">
-                    <MDEditor.Markdown
-                      source={selected.answer}
-                      style={{
-                        background: "transparent",
-                        fontFamily: "inherit",
-                        fontSize: "0.925rem",
-                        lineHeight: 1.7,
-                      }}
-                      className="[&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
+              {/* Body */}
+              <div className="min-w-0 flex-1 space-y-8 p-6">
+                <section>
+                  <h3 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
+                    Answer
+                  </h3>
+                  <div className="bg-card rounded-2xl border p-6 shadow-sm">
+                    <div data-color-mode="light">
+                      <MDEditor.Markdown
+                        source={selected.answer}
+                        style={{
+                          background: "transparent",
+                          fontFamily: "inherit",
+                          fontSize: "0.95rem",
+                          lineHeight: 1.75,
+                        }}
+                        className="[&_code]:rounded [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                <section className="min-w-0">
+                  <h3 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
+                    Referenced files
+                  </h3>
+                  <div className="min-w-0 overflow-hidden rounded-2xl border shadow-sm">
+                    <CodeReferences
+                      key={selected.id}
+                      filesReferences={toFileRefs(selected.filesReferences)}
                     />
                   </div>
-                </div>
-
-                <CodeReferences
-                  key={selected.id}
-                  filesReferences={toFileRefs(selected.filesReferences)}
-                />
+                </section>
               </div>
-            </>
+            </div>
           )}
         </SheetContent>
       </Sheet>
