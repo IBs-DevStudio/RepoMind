@@ -167,9 +167,32 @@ exports.Prisma.CommitScalarFieldEnum = {
   summary: 'summary'
 };
 
+exports.Prisma.SourceCodeEmbeddingScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  fileName: 'fileName',
+  sourceCode: 'sourceCode'
+};
+
+exports.Prisma.QuestionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  question: 'question',
+  answer: 'answer',
+  filesReferences: 'filesReferences',
+  projectId: 'projectId',
+  userId: 'userId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -180,6 +203,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.CreditReason = exports.$Enums.CreditReason = {
   SIGNUP: 'SIGNUP',
@@ -198,7 +227,9 @@ exports.Prisma.ModelName = {
   CreditEntry: 'CreditEntry',
   Project: 'Project',
   ProjectMember: 'ProjectMember',
-  Commit: 'Commit'
+  Commit: 'Commit',
+  SourceCodeEmbedding: 'SourceCodeEmbedding',
+  Question: 'Question'
 };
 
 /**
