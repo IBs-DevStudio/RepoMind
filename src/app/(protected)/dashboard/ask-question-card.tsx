@@ -101,10 +101,12 @@ export default function AskQuestionCard() {
             </div>
           </DialogHeader>
 
-          <MDEditor.Markdown
-            source={answer}
-            className="max-h-[40vh] max-w-[70vw] overflow-auto"
-          />
+          <div data-color-mode="light">
+            <MDEditor.Markdown
+              source={answer}
+              className="max-h-[40vh] max-w-[70vw] overflow-auto rounded-md p-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
+            />
+          </div>
           <CodeReferences filesReferences={filesReferences} />
 
           <Button type="button" onClick={() => setOpen(false)}>
