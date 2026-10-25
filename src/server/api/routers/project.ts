@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { parseGithubUrl, pollCommits } from "@/lib/github";
+import { indexRepo } from "@/lib/indexer";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
 export const projectRouter = createTRPCRouter({
@@ -31,6 +32,7 @@ export const projectRouter = createTRPCRouter({
 
       after(() => {
         pollCommits(project.id).catch(console.error);
+        void indexRepo(project.id);
       });
 
       return project;
@@ -57,11 +59,42 @@ export const projectRouter = createTRPCRouter({
 
       after(() => {
         pollCommits(input.projectId).catch(console.error);
+        void indexRepo(input.projectId);
       });
 
       return ctx.db.commit.findMany({
         where: { projectId: input.projectId },
         orderBy: { commitDate: "desc" },
+      });
+    }),
+
+  saveAnswer: protectedProcedure
+    .input(
+      z.object({
+        projectId: z.string(),
+        question: z.string(),
+        answer: z.string(),
+        filesReferences: z.array(
+          z.object({ fileName: z.string(), sourceCode: z.string() }),
+        ),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      return ctx.db.question.create({
+        data: {
+          projectId: input.projectId,
+          userId: ctx.userId,
+          question: input.question,
+          answer: input.answer,
+          filesReferences: input.filesReferences,
+        },
       });
     }),
 });
