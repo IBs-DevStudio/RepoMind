@@ -97,4 +97,21 @@ export const projectRouter = createTRPCRouter({
         },
       });
     }),
+
+  getQuestions: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const member = await ctx.db.projectMember.findUnique({
+        where: {
+          userId_projectId: { userId: ctx.userId, projectId: input.projectId },
+        },
+      });
+      if (!member) throw new TRPCError({ code: "FORBIDDEN" });
+
+      return ctx.db.question.findMany({
+        where: { projectId: input.projectId },
+        include: { user: { select: { firstName: true, imageUrl: true } } },
+        orderBy: { createdAt: "desc" },
+      });
+    }),
 });
