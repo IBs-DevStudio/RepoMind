@@ -79,8 +79,8 @@ export default function MeetingCard({ className }: MeetingCardProps) {
   return (
     <Card
       className={cn(
-        "relative flex flex-col justify-between overflow-hidden border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.02] shadow-sm transition-all hover:shadow-md col-span-1 sm:col-span-2",
-        className,
+        "relative flex flex-col justify-between overflow-hidden border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.02] shadow-sm transition-all hover:shadow-md",
+        className ?? "w-full",
       )}
     >
       <CardHeader className="pb-3">

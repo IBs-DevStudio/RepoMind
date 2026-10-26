@@ -14,7 +14,7 @@ import {
     Zap,
 } from "lucide-react";
 import Image from "next/image";
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -39,6 +39,8 @@ type Msg =
 const QUICK_PROMPTS = [
     "How is user authentication & session handled?",
     "Explain the data flow from API endpoints to the database",
+    "What are the core architecture patterns & project structure?",
+    "Which key dependencies and external services are used?",
 ];
 
 interface AskQuestionCardProps {
@@ -59,6 +61,18 @@ export default function AskQuestionCard({
     const [filesReferences, setFilesReferences] = useState<FileRef[]>([]);
     const [copied, setCopied] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
+
+    // Listen for custom search/ask event from the global top search bar
+    useEffect(() => {
+        const handleAsk = (e: Event) => {
+            const custom = e as CustomEvent<{ question: string }>;
+            if (custom.detail?.question) {
+                setQuestion(custom.detail.question);
+            }
+        };
+        window.addEventListener("ask-repo-question", handleAsk);
+        return () => window.removeEventListener("ask-repo-question", handleAsk);
+    }, []);
 
     const utils = api.useUtils();
     const saveAnswer = api.project.saveAnswer.useMutation();
@@ -332,7 +346,7 @@ export default function AskQuestionCard({
             <Card
                 className={cn(
                     "relative overflow-hidden border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.02] shadow-sm transition-all hover:shadow-md",
-                    className ?? "col-span-3",
+                    className ?? "w-full",
                 )}
             >
                 <CardHeader className="pb-3">
