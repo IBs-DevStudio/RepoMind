@@ -2,11 +2,39 @@ import { after } from "next/server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
+import { countRepoFiles } from "@/lib/credits";
 import { parseGithubUrl, pollCommits } from "@/lib/github";
 import { indexRepo } from "@/lib/indexer";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
+const lastPoll = new Map<string, number>();
+const POLL_COOLDOWN_MS = 5 * 60 * 1000;
+
 export const projectRouter = createTRPCRouter({
+  getMyCredits: protectedProcedure.query(async ({ ctx }) => {
+    const { _sum } = await ctx.db.creditEntry.aggregate({
+      where: { userId: ctx.userId },
+      _sum: { delta: true },
+    });
+    return _sum.delta ?? 0;
+  }),
+
+  checkCredits: protectedProcedure
+    .input(
+      z.object({
+        githubUrl: z.string().url(),
+        githubToken: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const fileCount = await countRepoFiles(input.githubUrl, input.githubToken);
+      const { _sum } = await ctx.db.creditEntry.aggregate({
+        where: { userId: ctx.userId },
+        _sum: { delta: true },
+      });
+      return { fileCount, userCredits: _sum.delta ?? 0 };
+    }),
+
   createProject: protectedProcedure
     .input(
       z.object({
@@ -22,12 +50,35 @@ export const projectRouter = createTRPCRouter({
         throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid GitHub URL" });
       }
 
-      const project = await ctx.db.project.create({
-        data: {
-          name: input.name,
-          githubUrl: input.githubUrl,
-          members: { create: { userId: ctx.userId, role: "OWNER" } },
-        },
+      const fileCount = await countRepoFiles(input.githubUrl, input.githubToken);
+
+      const project = await ctx.db.$transaction(async (tx) => {
+        const { _sum } = await tx.creditEntry.aggregate({
+          where: { userId: ctx.userId },
+          _sum: { delta: true },
+        });
+        const balance = _sum.delta ?? 0;
+        if (balance < fileCount) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: `Insufficient credits: this repo costs ${fileCount}, you have ${balance}.`,
+          });
+        }
+
+        const created = await tx.project.create({
+          data: {
+            name: input.name,
+            githubUrl: input.githubUrl,
+            members: { create: { userId: ctx.userId, role: "OWNER" } },
+          },
+        });
+
+        if (fileCount > 0) {
+          await tx.creditEntry.create({
+            data: { userId: ctx.userId, delta: -fileCount, reason: "USAGE" },
+          });
+        }
+        return created;
       });
 
       after(() => {
@@ -57,10 +108,14 @@ export const projectRouter = createTRPCRouter({
       });
       if (!member) throw new TRPCError({ code: "FORBIDDEN" });
 
-      after(() => {
-        pollCommits(input.projectId).catch(console.error);
-        void indexRepo(input.projectId);
-      });
+      const now = Date.now();
+      if (now - (lastPoll.get(input.projectId) ?? 0) > POLL_COOLDOWN_MS) {
+        lastPoll.set(input.projectId, now);
+        after(() => {
+          pollCommits(input.projectId).catch(console.error);
+          void indexRepo(input.projectId);
+        });
+      }
 
       return ctx.db.commit.findMany({
         where: { projectId: input.projectId },
@@ -195,6 +250,7 @@ export const projectRouter = createTRPCRouter({
 
       return meeting;
     }),
+
   archiveProject: protectedProcedure
     .input(z.object({ projectId: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -229,9 +285,7 @@ export const projectRouter = createTRPCRouter({
 
       return ctx.db.projectMember.findMany({
         where: { projectId: input.projectId },
-        include: {
-          user: { select: { firstName: true, imageUrl: true } },
-        },
+        include: { user: { select: { firstName: true, imageUrl: true } } },
       });
     }),
 });
