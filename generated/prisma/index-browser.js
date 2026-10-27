@@ -136,6 +136,7 @@ exports.Prisma.CreditEntryScalarFieldEnum = {
   userId: 'userId',
   delta: 'delta',
   reason: 'reason',
+  stripeSessionId: 'stripeSessionId',
   createdAt: 'createdAt'
 };
 

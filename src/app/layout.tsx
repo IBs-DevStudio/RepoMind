@@ -2,16 +2,16 @@ import "@/styles/globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { type Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
-  title: "RepoLogue",
-  description: "Have a meaningful conversation with your entire engineering workflow.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: "Engram — Find your way through code",
+  description: "Engram: our codebase’s memory. Have a meaningful conversation with your entire engineering workflow.",
+  icons: [{ rel: "icon", url: "/engram-icon.svg" }],
 };
 
 const geist = Geist({
@@ -24,6 +24,12 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["500", "600", "700"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -31,7 +37,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
-        className={`${geist.variable} ${geistMono.variable}`}
+        className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
         suppressHydrationWarning
       >
         <body>

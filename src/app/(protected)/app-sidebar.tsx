@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { EngramLogo } from "@/components/engram-logo";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Sidebar,
@@ -39,16 +40,17 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" variant="floating">
-      <SidebarHeader>
-        <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="logo" width={40} height={40} />
-          {open && (
+      <SidebarHeader className="py-2.5 px-3">
+        <div className="flex items-start justify-between gap-2">
+          {open ? (
             <>
-              <h1 className="text-primary/80 text-xl font-bold">
-                Repo<span className="text-blue">Logue</span>
-              </h1>
-              <SidebarTrigger className="ml-auto" />
+              <EngramLogo size="md" showTagline />
+              <SidebarTrigger className="size-7 flex-none ml-auto text-muted-foreground hover:text-foreground mt-0.5" />
             </>
+          ) : (
+            <div className="flex w-full items-center justify-center min-h-[36px]">
+              <EngramLogo collapsed size="sm" />
+            </div>
           )}
         </div>
       </SidebarHeader>

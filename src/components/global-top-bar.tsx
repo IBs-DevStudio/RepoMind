@@ -189,7 +189,7 @@ export function GlobalTopBar() {
             <div className="flex items-center gap-2.5 truncate">
               <Search className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
               <span className="truncate">
-                Search commits, repo, or ask AI...
+                Search commits, projects, or ask Engram...
               </span>
             </div>
 
@@ -296,7 +296,7 @@ export function GlobalTopBar() {
             {query.trim().length > 0 && (
               <div>
                 <p className="px-2 pb-1.5 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
-                  AI Codebase Copilot
+                  Engram Codebase Copilot
                 </p>
                 <button
                   type="button"
@@ -309,10 +309,10 @@ export function GlobalTopBar() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">
-                        Ask Repo AI: &ldquo;<span className="text-primary font-semibold">{query}</span>&rdquo;
+                        Ask Engram: &ldquo;<span className="text-primary font-semibold">{query}</span>&rdquo;
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Search indexed codebase embeddings & generate answers
+                        our codebase’s memory &bull; search indexed codebase embeddings & generate answers
                       </p>
                     </div>
                   </div>

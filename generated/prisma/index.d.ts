@@ -2955,6 +2955,7 @@ export namespace Prisma {
     userId: string | null
     delta: number | null
     reason: $Enums.CreditReason | null
+    stripeSessionId: string | null
     createdAt: Date | null
   }
 
@@ -2963,6 +2964,7 @@ export namespace Prisma {
     userId: string | null
     delta: number | null
     reason: $Enums.CreditReason | null
+    stripeSessionId: string | null
     createdAt: Date | null
   }
 
@@ -2971,6 +2973,7 @@ export namespace Prisma {
     userId: number
     delta: number
     reason: number
+    stripeSessionId: number
     createdAt: number
     _all: number
   }
@@ -2989,6 +2992,7 @@ export namespace Prisma {
     userId?: true
     delta?: true
     reason?: true
+    stripeSessionId?: true
     createdAt?: true
   }
 
@@ -2997,6 +3001,7 @@ export namespace Prisma {
     userId?: true
     delta?: true
     reason?: true
+    stripeSessionId?: true
     createdAt?: true
   }
 
@@ -3005,6 +3010,7 @@ export namespace Prisma {
     userId?: true
     delta?: true
     reason?: true
+    stripeSessionId?: true
     createdAt?: true
     _all?: true
   }
@@ -3100,6 +3106,7 @@ export namespace Prisma {
     userId: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId: string | null
     createdAt: Date
     _count: CreditEntryCountAggregateOutputType | null
     _avg: CreditEntryAvgAggregateOutputType | null
@@ -3127,6 +3134,7 @@ export namespace Prisma {
     userId?: boolean
     delta?: boolean
     reason?: boolean
+    stripeSessionId?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["creditEntry"]>
@@ -3136,6 +3144,7 @@ export namespace Prisma {
     userId?: boolean
     delta?: boolean
     reason?: boolean
+    stripeSessionId?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["creditEntry"]>
@@ -3145,6 +3154,7 @@ export namespace Prisma {
     userId?: boolean
     delta?: boolean
     reason?: boolean
+    stripeSessionId?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["creditEntry"]>
@@ -3154,10 +3164,11 @@ export namespace Prisma {
     userId?: boolean
     delta?: boolean
     reason?: boolean
+    stripeSessionId?: boolean
     createdAt?: boolean
   }
 
-  export type CreditEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "delta" | "reason" | "createdAt", ExtArgs["result"]["creditEntry"]>
+  export type CreditEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "delta" | "reason" | "stripeSessionId" | "createdAt", ExtArgs["result"]["creditEntry"]>
   export type CreditEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3178,6 +3189,7 @@ export namespace Prisma {
       userId: string
       delta: number
       reason: $Enums.CreditReason
+      stripeSessionId: string | null
       createdAt: Date
     }, ExtArgs["result"]["creditEntry"]>
     composites: {}
@@ -3607,6 +3619,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"CreditEntry", 'String'>
     readonly delta: FieldRef<"CreditEntry", 'Int'>
     readonly reason: FieldRef<"CreditEntry", 'CreditReason'>
+    readonly stripeSessionId: FieldRef<"CreditEntry", 'String'>
     readonly createdAt: FieldRef<"CreditEntry", 'DateTime'>
   }
     
@@ -11782,6 +11795,7 @@ export namespace Prisma {
     userId: 'userId',
     delta: 'delta',
     reason: 'reason',
+    stripeSessionId: 'stripeSessionId',
     createdAt: 'createdAt'
   };
 
@@ -12117,6 +12131,7 @@ export namespace Prisma {
     userId?: StringFilter<"CreditEntry"> | string
     delta?: IntFilter<"CreditEntry"> | number
     reason?: EnumCreditReasonFilter<"CreditEntry"> | $Enums.CreditReason
+    stripeSessionId?: StringNullableFilter<"CreditEntry"> | string | null
     createdAt?: DateTimeFilter<"CreditEntry"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -12126,12 +12141,14 @@ export namespace Prisma {
     userId?: SortOrder
     delta?: SortOrder
     reason?: SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
   export type CreditEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    stripeSessionId?: string
     AND?: CreditEntryWhereInput | CreditEntryWhereInput[]
     OR?: CreditEntryWhereInput[]
     NOT?: CreditEntryWhereInput | CreditEntryWhereInput[]
@@ -12140,13 +12157,14 @@ export namespace Prisma {
     reason?: EnumCreditReasonFilter<"CreditEntry"> | $Enums.CreditReason
     createdAt?: DateTimeFilter<"CreditEntry"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "stripeSessionId">
 
   export type CreditEntryOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     delta?: SortOrder
     reason?: SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: CreditEntryCountOrderByAggregateInput
     _avg?: CreditEntryAvgOrderByAggregateInput
@@ -12163,6 +12181,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"CreditEntry"> | string
     delta?: IntWithAggregatesFilter<"CreditEntry"> | number
     reason?: EnumCreditReasonWithAggregatesFilter<"CreditEntry"> | $Enums.CreditReason
+    stripeSessionId?: StringNullableWithAggregatesFilter<"CreditEntry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CreditEntry"> | Date | string
   }
 
@@ -12720,6 +12739,7 @@ export namespace Prisma {
     id?: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutCreditsInput
   }
@@ -12729,6 +12749,7 @@ export namespace Prisma {
     userId: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
   }
 
@@ -12736,6 +12757,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCreditsNestedInput
   }
@@ -12745,6 +12767,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12753,6 +12776,7 @@ export namespace Prisma {
     userId: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
   }
 
@@ -12760,6 +12784,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12768,6 +12793,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13447,6 +13473,7 @@ export namespace Prisma {
     userId?: SortOrder
     delta?: SortOrder
     reason?: SortOrder
+    stripeSessionId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -13459,6 +13486,7 @@ export namespace Prisma {
     userId?: SortOrder
     delta?: SortOrder
     reason?: SortOrder
+    stripeSessionId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -13467,6 +13495,7 @@ export namespace Prisma {
     userId?: SortOrder
     delta?: SortOrder
     reason?: SortOrder
+    stripeSessionId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14649,6 +14678,7 @@ export namespace Prisma {
     id?: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
   }
 
@@ -14656,6 +14686,7 @@ export namespace Prisma {
     id?: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
   }
 
@@ -14743,6 +14774,7 @@ export namespace Prisma {
     userId?: StringFilter<"CreditEntry"> | string
     delta?: IntFilter<"CreditEntry"> | number
     reason?: EnumCreditReasonFilter<"CreditEntry"> | $Enums.CreditReason
+    stripeSessionId?: StringNullableFilter<"CreditEntry"> | string | null
     createdAt?: DateTimeFilter<"CreditEntry"> | Date | string
   }
 
@@ -15711,6 +15743,7 @@ export namespace Prisma {
     id?: string
     delta: number
     reason: $Enums.CreditReason
+    stripeSessionId?: string | null
     createdAt?: Date | string
   }
 
@@ -15733,6 +15766,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -15740,6 +15774,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -15747,6 +15782,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     delta?: IntFieldUpdateOperationsInput | number
     reason?: EnumCreditReasonFieldUpdateOperationsInput | $Enums.CreditReason
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
