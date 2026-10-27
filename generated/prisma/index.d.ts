@@ -4051,6 +4051,7 @@ export namespace Prisma {
     updatedAt: Date | null
     name: string | null
     githubUrl: string | null
+    githubToken: string | null
     deletedAt: Date | null
   }
 
@@ -4060,6 +4061,7 @@ export namespace Prisma {
     updatedAt: Date | null
     name: string | null
     githubUrl: string | null
+    githubToken: string | null
     deletedAt: Date | null
   }
 
@@ -4069,6 +4071,7 @@ export namespace Prisma {
     updatedAt: number
     name: number
     githubUrl: number
+    githubToken: number
     deletedAt: number
     _all: number
   }
@@ -4080,6 +4083,7 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     githubUrl?: true
+    githubToken?: true
     deletedAt?: true
   }
 
@@ -4089,6 +4093,7 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     githubUrl?: true
+    githubToken?: true
     deletedAt?: true
   }
 
@@ -4098,6 +4103,7 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     githubUrl?: true
+    githubToken?: true
     deletedAt?: true
     _all?: true
   }
@@ -4180,6 +4186,7 @@ export namespace Prisma {
     updatedAt: Date
     name: string
     githubUrl: string
+    githubToken: string | null
     deletedAt: Date | null
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
@@ -4206,6 +4213,7 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     githubUrl?: boolean
+    githubToken?: boolean
     deletedAt?: boolean
     members?: boolean | Project$membersArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
@@ -4221,6 +4229,7 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     githubUrl?: boolean
+    githubToken?: boolean
     deletedAt?: boolean
   }, ExtArgs["result"]["project"]>
 
@@ -4230,6 +4239,7 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     githubUrl?: boolean
+    githubToken?: boolean
     deletedAt?: boolean
   }, ExtArgs["result"]["project"]>
 
@@ -4239,10 +4249,11 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     githubUrl?: boolean
+    githubToken?: boolean
     deletedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "githubUrl" | "deletedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "githubUrl" | "githubToken" | "deletedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | Project$membersArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
@@ -4269,6 +4280,7 @@ export namespace Prisma {
       updatedAt: Date
       name: string
       githubUrl: string
+      githubToken: string | null
       deletedAt: Date | null
     }, ExtArgs["result"]["project"]>
     composites: {}
@@ -4703,6 +4715,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
     readonly name: FieldRef<"Project", 'String'>
     readonly githubUrl: FieldRef<"Project", 'String'>
+    readonly githubToken: FieldRef<"Project", 'String'>
     readonly deletedAt: FieldRef<"Project", 'DateTime'>
   }
     
@@ -11808,6 +11821,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     name: 'name',
     githubUrl: 'githubUrl',
+    githubToken: 'githubToken',
     deletedAt: 'deletedAt'
   };
 
@@ -12194,6 +12208,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     name?: StringFilter<"Project"> | string
     githubUrl?: StringFilter<"Project"> | string
+    githubToken?: StringNullableFilter<"Project"> | string | null
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
     members?: ProjectMemberListRelationFilter
     commits?: CommitListRelationFilter
@@ -12208,6 +12223,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     githubUrl?: SortOrder
+    githubToken?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     members?: ProjectMemberOrderByRelationAggregateInput
     commits?: CommitOrderByRelationAggregateInput
@@ -12225,6 +12241,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     name?: StringFilter<"Project"> | string
     githubUrl?: StringFilter<"Project"> | string
+    githubToken?: StringNullableFilter<"Project"> | string | null
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
     members?: ProjectMemberListRelationFilter
     commits?: CommitListRelationFilter
@@ -12239,6 +12256,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     githubUrl?: SortOrder
+    githubToken?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
@@ -12254,6 +12272,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     name?: StringWithAggregatesFilter<"Project"> | string
     githubUrl?: StringWithAggregatesFilter<"Project"> | string
+    githubToken?: StringNullableWithAggregatesFilter<"Project"> | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   }
 
@@ -12803,6 +12822,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberCreateNestedManyWithoutProjectInput
     commits?: CommitCreateNestedManyWithoutProjectInput
@@ -12817,6 +12837,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
@@ -12831,6 +12852,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUpdateManyWithoutProjectNestedInput
     commits?: CommitUpdateManyWithoutProjectNestedInput
@@ -12845,6 +12867,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
@@ -12859,6 +12882,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
   }
 
@@ -12868,6 +12892,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -12877,6 +12902,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -13576,6 +13602,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     githubUrl?: SortOrder
+    githubToken?: SortOrder
     deletedAt?: SortOrder
   }
 
@@ -13585,6 +13612,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     githubUrl?: SortOrder
+    githubToken?: SortOrder
     deletedAt?: SortOrder
   }
 
@@ -13594,6 +13622,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     githubUrl?: SortOrder
+    githubToken?: SortOrder
     deletedAt?: SortOrder
   }
 
@@ -15187,6 +15216,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     commits?: CommitCreateNestedManyWithoutProjectInput
     embeddings?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
@@ -15200,6 +15230,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
     embeddings?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
@@ -15264,6 +15295,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     commits?: CommitUpdateManyWithoutProjectNestedInput
     embeddings?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
@@ -15277,6 +15309,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
     embeddings?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
@@ -15290,6 +15323,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberCreateNestedManyWithoutProjectInput
     embeddings?: SourceCodeEmbeddingCreateNestedManyWithoutProjectInput
@@ -15303,6 +15337,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberUncheckedCreateNestedManyWithoutProjectInput
     embeddings?: SourceCodeEmbeddingUncheckedCreateNestedManyWithoutProjectInput
@@ -15332,6 +15367,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUpdateManyWithoutProjectNestedInput
     embeddings?: SourceCodeEmbeddingUpdateManyWithoutProjectNestedInput
@@ -15345,6 +15381,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUncheckedUpdateManyWithoutProjectNestedInput
     embeddings?: SourceCodeEmbeddingUncheckedUpdateManyWithoutProjectNestedInput
@@ -15358,6 +15395,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberCreateNestedManyWithoutProjectInput
     commits?: CommitCreateNestedManyWithoutProjectInput
@@ -15371,6 +15409,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
@@ -15400,6 +15439,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUpdateManyWithoutProjectNestedInput
     commits?: CommitUpdateManyWithoutProjectNestedInput
@@ -15413,6 +15453,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
@@ -15426,6 +15467,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberCreateNestedManyWithoutProjectInput
     commits?: CommitCreateNestedManyWithoutProjectInput
@@ -15439,6 +15481,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
@@ -15497,6 +15540,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUpdateManyWithoutProjectNestedInput
     commits?: CommitUpdateManyWithoutProjectNestedInput
@@ -15510,6 +15554,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
@@ -15558,6 +15603,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberCreateNestedManyWithoutProjectInput
     commits?: CommitCreateNestedManyWithoutProjectInput
@@ -15571,6 +15617,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     name: string
     githubUrl: string
+    githubToken?: string | null
     deletedAt?: Date | string | null
     members?: ProjectMemberUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
@@ -15632,6 +15679,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUpdateManyWithoutProjectNestedInput
     commits?: CommitUpdateManyWithoutProjectNestedInput
@@ -15645,6 +15693,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     githubUrl?: StringFieldUpdateOperationsInput | string
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     members?: ProjectMemberUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput

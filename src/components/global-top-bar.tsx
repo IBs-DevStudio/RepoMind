@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
+
 import {
   Bot,
   Command,
@@ -12,7 +12,9 @@ import {
   Plus,
   Presentation,
   Search,
+  Settings,
   Sparkles,
+  Users,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -60,10 +62,22 @@ const NAV_ITEMS: NavigationItem[] = [
     description: "Audio uploads, meeting chapters & action issues",
   },
   {
+    title: "Team & Collaborators",
+    url: "/team",
+    icon: Users,
+    description: "Manage project members and shareable invite link",
+  },
+  {
     title: "Billing & Plans",
     url: "/billing",
     icon: CreditCard,
     description: "Manage subscription & API usage limits",
+  },
+  {
+    title: "Project Settings",
+    url: "/settings",
+    icon: Settings,
+    description: "Configure repository tokens, project name, or archive",
   },
   {
     title: "Create Project",
@@ -223,10 +237,6 @@ export function GlobalTopBar() {
           )}
 
           <ThemeToggle />
-
-          <div className="flex items-center pl-0.5">
-            <UserButton />
-          </div>
         </div>
       </header>
 

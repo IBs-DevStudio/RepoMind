@@ -1,5 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
+import { Octokit } from "@octokit/rest";
 
 import { db } from "@/server/db";
 import { octokit, parseGithubUrl } from "@/lib/github";
@@ -11,9 +12,9 @@ const OK_EXT = /\.(ts|tsx|js|jsx|mjs|py|go|rs|java|kt|rb|php|cs|cpp|c|h|swift|md
 const SKIP = /(^|\/)(node_modules|dist|build|\.next|\.git|vendor|coverage|generated)\//;
 const LOCK = /(lock\.json|lock\.yaml|\.lock|\.min\.\w+)$/;
 
-async function listFiles(owner: string, repo: string) {
-  const { data: info } = await octokit.rest.repos.get({ owner, repo });
-  const { data: tree } = await octokit.rest.git.getTree({
+async function listFiles(owner: string, repo: string, client: Octokit = octokit) {
+  const { data: info } = await client.rest.repos.get({ owner, repo });
+  const { data: tree } = await client.rest.git.getTree({
     owner,
     repo,
     tree_sha: info.default_branch,
@@ -44,12 +45,13 @@ async function runIndex(projectId: string) {
 
   const project = await db.project.findUnique({
     where: { id: projectId },
-    select: { githubUrl: true },
+    select: { githubUrl: true, githubToken: true },
   });
   if (!project) return;
 
+  const client = project.githubToken ? new Octokit({ auth: project.githubToken }) : octokit;
   const { owner, repo } = parseGithubUrl(project.githubUrl);
-  const files = await listFiles(owner, repo);
+  const files = await listFiles(owner, repo, client);
 
   // Resume: only index files that don't have a vector yet.
   const existing = await db.sourceCodeEmbedding.findMany({
@@ -63,7 +65,7 @@ async function runIndex(projectId: string) {
     const batch = todo.slice(i, i + 10);
     const loaded = await Promise.all(
       batch.map(async (f) => {
-        const { data } = await octokit.rest.git.getBlob({ owner, repo, file_sha: f.sha });
+        const { data } = await client.rest.git.getBlob({ owner, repo, file_sha: f.sha });
         return {
           fileName: f.path,
           sourceCode: Buffer.from(data.content, "base64").toString("utf8").slice(0, 30_000),

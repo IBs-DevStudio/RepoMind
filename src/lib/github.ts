@@ -12,8 +12,8 @@ export function parseGithubUrl(githubUrl: string) {
   return { owner: m[1], repo: m[2] };
 }
 
-async function getLatestCommits(owner: string, repo: string) {
-  const { data } = await octokit.rest.repos.listCommits({
+async function getLatestCommits(owner: string, repo: string, client: Octokit = octokit) {
+  const { data } = await client.rest.repos.listCommits({
     owner,
     repo,
     per_page: 10,
@@ -28,8 +28,8 @@ async function getLatestCommits(owner: string, repo: string) {
   }));
 }
 
-async function summarizeCommit(owner: string, repo: string, sha: string) {
-  const res = await octokit.request("GET /repos/{owner}/{repo}/commits/{ref}", {
+async function summarizeCommit(owner: string, repo: string, sha: string, client: Octokit = octokit) {
+  const res = await client.request("GET /repos/{owner}/{repo}/commits/{ref}", {
     owner,
     repo,
     ref: sha,
@@ -41,12 +41,13 @@ async function summarizeCommit(owner: string, repo: string, sha: string) {
 async function runPoll(projectId: string) {
   const project = await db.project.findUnique({
     where: { id: projectId },
-    select: { githubUrl: true },
+    select: { githubUrl: true, githubToken: true },
   });
   if (!project) throw new Error("Project not found");
 
+  const client = project.githubToken ? new Octokit({ auth: project.githubToken }) : octokit;
   const { owner, repo } = parseGithubUrl(project.githubUrl);
-  const latest = await getLatestCommits(owner, repo);
+  const latest = await getLatestCommits(owner, repo, client);
 
   const existing = await db.commit.findMany({
     where: { projectId, commitHash: { in: latest.map((c) => c.commitHash) } },

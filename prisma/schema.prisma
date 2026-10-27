@@ -53,6 +53,7 @@ model Project {
   updatedAt  DateTime              @updatedAt
   name       String
   githubUrl  String
+  githubToken String?
   deletedAt  DateTime?
   members    ProjectMember[]
   commits    Commit[]
