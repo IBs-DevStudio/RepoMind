@@ -77,9 +77,9 @@ export default function SettingsPage() {
     updateProject.mutate(
       { projectId, name: projectName.trim() },
       {
-        onSuccess: async () => {
+        onSuccess: () => {
           toast.success("Project name updated successfully");
-          await refetch();
+          void refetch();
         },
         onError: (err) => toast.error(err.message || "Failed to update name"),
       },
@@ -93,9 +93,9 @@ export default function SettingsPage() {
     updateProject.mutate(
       { projectId, githubToken: githubToken.trim() },
       {
-        onSuccess: async () => {
+        onSuccess: () => {
           toast.success("GitHub access token saved");
-          await refetch();
+          void refetch();
         },
         onError: (err) => toast.error(err.message || "Failed to save token"),
       },
@@ -108,10 +108,10 @@ export default function SettingsPage() {
     updateProject.mutate(
       { projectId, githubToken: null },
       {
-        onSuccess: async () => {
+        onSuccess: () => {
           setGithubToken("");
           toast.success("Custom GitHub token removed");
-          await refetch();
+          void refetch();
         },
         onError: (err) => toast.error(err.message || "Failed to remove token"),
       },
@@ -124,10 +124,10 @@ export default function SettingsPage() {
     archiveProject.mutate(
       { projectId },
       {
-        onSuccess: async () => {
+        onSuccess: () => {
           toast.success("Project archived successfully");
           setArchiveModalOpen(false);
-          await refetch();
+          void refetch();
           router.push("/dashboard");
         },
         onError: (err) => toast.error(err.message || "Failed to archive project"),
@@ -141,11 +141,11 @@ export default function SettingsPage() {
     deleteProject.mutate(
       { projectId },
       {
-        onSuccess: async () => {
+        onSuccess: () => {
           toast.success("Project permanently deleted");
           setDeleteModalOpen(false);
           setProjectId("");
-          await refetch();
+          void refetch();
           router.push("/dashboard");
         },
         onError: (err) => toast.error(err.message || "Failed to delete project"),
@@ -207,7 +207,7 @@ export default function SettingsPage() {
       )}
 
       {/* General Settings */}
-      <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-6 shadow-xs space-y-6">
+      <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-4 sm:p-6 shadow-xs space-y-6">
         <div>
           <h2 className="text-base font-semibold text-foreground">
             General Configuration
@@ -239,7 +239,7 @@ export default function SettingsPage() {
                     !projectName.trim() ||
                     projectName === project.name
                   }
-                  className="gap-1.5 w-fit"
+                  className="gap-1.5 w-full sm:w-fit active:scale-[0.98] touch-manipulation"
                 >
                   {updateProject.isPending ? (
                     <Loader2 className="size-4 animate-spin" />
@@ -271,7 +271,7 @@ export default function SettingsPage() {
               <Button
                 variant="outline"
                 size="icon"
-                className="size-9"
+                className="size-9 active:scale-[0.98] touch-manipulation"
                 title="Open GitHub"
               >
                 <ExternalLink className="size-4" />
@@ -282,10 +282,10 @@ export default function SettingsPage() {
       </div>
 
       {/* GitHub Personal Access Token */}
-      <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-6 shadow-xs space-y-6">
+      <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-4 sm:p-6 shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-base font-semibold text-foreground">
                 GitHub Access Token
               </h2>
@@ -331,7 +331,7 @@ export default function SettingsPage() {
               <button
                 type="button"
                 onClick={() => setShowToken((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors touch-manipulation"
                 title={showToken ? "Hide token" : "Show token"}
               >
                 {showToken ? (
@@ -344,11 +344,11 @@ export default function SettingsPage() {
           </div>
 
           {isOwner && (
-            <div className="flex flex-wrap items-center gap-2.5">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
               <Button
                 type="submit"
                 disabled={updateProject.isPending || !githubToken.trim()}
-                className="gap-1.5"
+                className="gap-1.5 active:scale-[0.98] touch-manipulation"
               >
                 {updateProject.isPending ? (
                   <Loader2 className="size-4 animate-spin" />
@@ -364,7 +364,7 @@ export default function SettingsPage() {
                   variant="outline"
                   disabled={updateProject.isPending}
                   onClick={handleRemoveToken}
-                  className="text-xs text-muted-foreground hover:text-red-500 hover:border-red-500/40"
+                  className="text-xs text-muted-foreground hover:text-red-500 hover:border-red-500/40 active:scale-[0.98] touch-manipulation"
                 >
                   Remove Custom Token
                 </Button>
@@ -375,7 +375,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Danger Zone */}
-      <div className="rounded-2xl border border-red-500/30 bg-red-500/5 backdrop-blur-sm p-6 shadow-xs space-y-6">
+      <div className="rounded-2xl border border-red-500/30 bg-red-500/5 backdrop-blur-sm p-4 sm:p-6 shadow-xs space-y-6">
         <div>
           <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
             <ShieldAlert className="size-5" />
@@ -402,7 +402,7 @@ export default function SettingsPage() {
               variant="outline"
               disabled={!isOwner}
               onClick={() => setArchiveModalOpen(true)}
-              className="border-red-500/30 text-red-600 hover:bg-red-500/10 hover:text-red-600 self-start sm:self-center gap-1.5 flex-none"
+              className="border-red-500/30 text-red-600 hover:bg-red-500/10 hover:text-red-600 w-full sm:w-auto gap-1.5 flex-none active:scale-[0.98] touch-manipulation"
             >
               <Archive className="size-4" />
               Archive Project
@@ -427,7 +427,7 @@ export default function SettingsPage() {
                 setDeleteConfirmText("");
                 setDeleteModalOpen(true);
               }}
-              className="self-start sm:self-center gap-1.5 flex-none"
+              className="w-full sm:w-auto gap-1.5 flex-none active:scale-[0.98] touch-manipulation"
             >
               <Trash2 className="size-4" />
               Delete Project
@@ -443,7 +443,7 @@ export default function SettingsPage() {
           if (!archiveProject.isPending) setArchiveModalOpen(v);
         }}
       >
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[94vw] max-w-md">
           <DialogHeader>
             <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
               <TriangleAlert className="size-6" />
@@ -455,11 +455,12 @@ export default function SettingsPage() {
             </DialogDescription>
           </DialogHeader>
 
-          <DialogFooter className="gap-2 sm:gap-2">
+          <DialogFooter className="flex-col-reverse sm:flex-row gap-2 sm:gap-2">
             <Button
               variant="outline"
               disabled={archiveProject.isPending}
               onClick={() => setArchiveModalOpen(false)}
+              className="w-full sm:w-auto"
             >
               Cancel
             </Button>
@@ -467,6 +468,7 @@ export default function SettingsPage() {
               variant="destructive"
               disabled={archiveProject.isPending}
               onClick={handleArchive}
+              className="w-full sm:w-auto"
             >
               {archiveProject.isPending ? (
                 <Loader2 className="mr-1.5 size-4 animate-spin" />
@@ -486,7 +488,7 @@ export default function SettingsPage() {
           if (!deleteProject.isPending) setDeleteModalOpen(v);
         }}
       >
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[94vw] max-w-md">
           <DialogHeader>
             <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-red-500/10 text-red-600">
               <ShieldAlert className="size-6" />
@@ -511,11 +513,12 @@ export default function SettingsPage() {
             />
           </div>
 
-          <DialogFooter className="gap-2 sm:gap-2">
+          <DialogFooter className="flex-col-reverse sm:flex-row gap-2 sm:gap-2">
             <Button
               variant="outline"
               disabled={deleteProject.isPending}
               onClick={() => setDeleteModalOpen(false)}
+              className="w-full sm:w-auto"
             >
               Cancel
             </Button>
@@ -526,6 +529,7 @@ export default function SettingsPage() {
                 deleteConfirmText.trim() !== project.name.trim()
               }
               onClick={handleDelete}
+              className="w-full sm:w-auto"
             >
               {deleteProject.isPending ? (
                 <Loader2 className="mr-1.5 size-4 animate-spin" />

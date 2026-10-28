@@ -171,17 +171,17 @@ export default function TeamPage() {
             </p>
           </div>
 
-          <div className="flex w-full md:w-auto items-center gap-2">
+          <div className="flex flex-col sm:flex-row w-full md:w-auto items-stretch sm:items-center gap-2">
             <div className="relative flex-1 md:w-80">
               <Input
                 readOnly
                 value={inviteLink}
-                className="bg-background/80 pr-10 font-mono text-xs select-all border-border/80"
+                className="bg-background/80 pr-10 font-mono text-xs select-all border-border/80 h-10"
               />
             </div>
             <Button
               onClick={handleCopyInvite}
-              className="gap-2 flex-none shadow-xs"
+              className="gap-2 flex-none shadow-xs h-10 touch-friendly cursor-pointer active:scale-95 transition-transform"
             >
               {copied ? (
                 <>
@@ -201,7 +201,7 @@ export default function TeamPage() {
 
       {/* Members List Card */}
       <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm shadow-xs overflow-hidden">
-        <div className="border-b border-border/70 px-5 py-4 flex items-center justify-between">
+        <div className="border-b border-border/70 px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between">
           <div>
             <h2 className="text-base font-semibold text-foreground">Project Members</h2>
             <p className="text-xs text-muted-foreground">
@@ -238,9 +238,9 @@ export default function TeamPage() {
               return (
                 <div
                   key={member.userId}
-                  className="flex items-center justify-between p-4 px-5 hover:bg-muted/30 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 sm:p-4 px-4 sm:px-5 gap-3 hover:bg-muted/30 transition-colors"
                 >
-                  <div className="flex items-center gap-3.5 min-w-0 pr-4">
+                  <div className="flex items-center gap-3.5 min-w-0 pr-0 sm:pr-4">
                     {member.user.imageUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -275,7 +275,7 @@ export default function TeamPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 flex-none">
+                  <div className="flex items-center gap-2.5 sm:gap-3 self-end sm:self-auto flex-none">
                     {isMemberOwner ? (
                       <Badge
                         variant="outline"

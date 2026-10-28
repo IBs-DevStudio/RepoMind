@@ -49,16 +49,16 @@ export default function CodeReferences({ filesReferences }: { filesReferences: F
 
       <div className="bg-card overflow-hidden rounded-xl border shadow-sm">
         <div className="grid md:grid-cols-[250px_1fr]">
-          {/* File list */}
-          <ul className="bg-muted/40 max-h-[340px] space-y-1 overflow-y-auto border-b p-2 md:border-r md:border-b-0">
+          {/* File list - Horizontal pills on mobile, vertical list on desktop */}
+          <ul className="bg-muted/40 flex md:flex-col overflow-x-auto md:overflow-y-auto max-h-[160px] md:max-h-[340px] gap-1 p-2 border-b md:border-r md:border-b-0 touch-pan-x">
             {filesReferences.map((file) => {
               const isActive = active.fileName === file.fileName;
               return (
-                <li key={file.fileName}>
+                <li key={file.fileName} className="shrink-0 md:shrink md:w-full">
                   <button
                     onClick={() => setTab(file.fileName)}
                     className={cn(
-                      "flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors",
+                      "flex items-center gap-2 rounded-lg px-2.5 py-1.5 md:py-2 text-left transition-colors touch-friendly w-full min-w-[140px] md:min-w-0",
                       isActive
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "hover:bg-muted text-foreground",
@@ -71,13 +71,13 @@ export default function CodeReferences({ filesReferences }: { filesReferences: F
                       )}
                     />
                     <span className="min-w-0">
-                      <span className="block truncate text-sm font-medium">
+                      <span className="block truncate text-xs md:text-sm font-medium">
                         {baseName(file.fileName)}
                       </span>
                       {dirName(file.fileName) && (
                         <span
                           className={cn(
-                            "block truncate font-mono text-[11px]",
+                            "block truncate font-mono text-[10px] md:text-[11px]",
                             isActive ? "text-primary-foreground/70" : "text-muted-foreground",
                           )}
                         >
@@ -93,25 +93,25 @@ export default function CodeReferences({ filesReferences }: { filesReferences: F
 
           {/* Code viewer */}
           <div className="min-w-0">
-            <div className="bg-muted/40 flex items-center justify-between gap-3 border-b px-4 py-2">
-              <p className="text-muted-foreground truncate font-mono text-xs">
+            <div className="bg-muted/40 flex items-center justify-between gap-2 sm:gap-3 border-b px-3 sm:px-4 py-2">
+              <p className="text-muted-foreground truncate font-mono text-xs min-w-0">
                 {active.fileName}
               </p>
-              <div className="flex flex-none items-center gap-2">
+              <div className="flex flex-none items-center gap-1.5 sm:gap-2">
                 <span className="bg-background text-muted-foreground rounded-md border px-1.5 py-0.5 font-mono text-[10px] uppercase">
                   {extOf(active.fileName) || "txt"}
                 </span>
                 <button
                   onClick={copyCode}
-                  className="text-muted-foreground hover:bg-background hover:text-foreground inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors"
+                  className="text-muted-foreground hover:bg-background hover:text-foreground inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors touch-friendly cursor-pointer active:scale-95"
                 >
-                  {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-                  {copied ? "Copied" : "Copy"}
+                  {copied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
+                  <span>{copied ? "Copied" : "Copy"}</span>
                 </button>
               </div>
             </div>
 
-            <div className="max-h-[300px] overflow-auto">
+            <div className="max-h-[300px] overflow-auto touch-pan-x">
               <SyntaxHighlighter
                 language={langOf(active.fileName)}
                 style={oneDark}

@@ -67,25 +67,29 @@ export default function CreatePage() {
       : "Not enough credits";
 
   return (
-    <div className="flex h-full items-center justify-center gap-12">
+    <div className="flex min-h-full flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-14 py-4 sm:py-8 px-2 sm:px-4">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/download-2.png"
         alt="GitHub illustration"
-        className="h-80 w-auto"
+        className="hidden md:block h-44 sm:h-60 lg:h-80 w-auto object-contain animate-float"
       />
 
-      <div className="w-full max-w-md">
-        <h1 className="text-2xl font-semibold">Link your GitHub Repository</h1>
-        <p className="text-muted-foreground text-sm">
-          Enter the URL of your repository to link it to the app
-        </p>
-        <div className="h-4" />
+      <div className="w-full max-w-md space-y-4">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+            Link your GitHub Repository
+          </h1>
+          <p className="text-muted-foreground text-xs sm:text-sm mt-1">
+            Enter the URL of your repository to link it to the app
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <Input
             {...register("projectName", { required: true })}
             placeholder="Project Name"
+            className="h-10 text-sm"
             required
           />
 
@@ -95,7 +99,7 @@ export default function CreatePage() {
               {...register("repoUrl", { required: true })}
               placeholder="GitHub Repository URL"
               type="url"
-              className="pl-9"
+              className="pl-9 h-10 text-sm"
               required
             />
           </div>
@@ -104,15 +108,15 @@ export default function CreatePage() {
             <Key className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" />
             <Input
               {...register("githubToken")}
-              placeholder="GitHub Token (Optional)"
+              placeholder="GitHub Token (Optional for private repos)"
               type="password"
-              className="pl-9"
+              className="pl-9 h-10 text-sm"
             />
           </div>
 
           {check && (
             <div
-              className={`rounded-md border px-4 py-3 text-sm ${
+              className={`rounded-xl border p-3.5 text-xs sm:text-sm ${
                 hasEnough
                   ? "border-primary/30 bg-primary/5"
                   : "border-red-500/30 bg-red-500/5 text-red-600"
@@ -134,15 +138,16 @@ export default function CreatePage() {
             </div>
           )}
 
-          <div className="h-2" />
-          <Button
-            className="btn-gradient hover-glow w-full"
-            type="submit"
-            disabled={busy || !hasEnough}
-          >
-            {busy && <Loader2 className="mr-2 size-4 animate-spin" />}
-            {label}
-          </Button>
+          <div className="pt-1">
+            <Button
+              className="w-full h-11 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold shadow-md touch-friendly cursor-pointer active:scale-[0.99] transition-all"
+              type="submit"
+              disabled={busy || !hasEnough}
+            >
+              {busy && <Loader2 className="mr-2 size-4 animate-spin" />}
+              {label}
+            </Button>
+          </div>
         </form>
       </div>
     </div>

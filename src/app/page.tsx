@@ -12,7 +12,6 @@ import {
   Headphones,
   MessageSquare,
   ShieldCheck,
-  Sparkles,
   Users,
 } from "lucide-react";
 
@@ -77,72 +76,72 @@ export default async function HomePage() {
         </section>
 
         {/* 4. FEATURES SECTION (Bento Grid on White) */}
-        <section id="features" className="py-24 sm:py-32 bg-white">
+        <section id="features" className="py-16 sm:py-24 lg:py-32 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700 text-xs font-semibold px-3 py-1 mb-3">
                 Core Capabilities
               </Badge>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
                 Everything you need to master any codebase
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-slate-600 leading-relaxed px-2">
                 From indexing source files with pgvector to transcribing meeting decisions, Engram captures the full context of your software.
               </p>
             </div>
 
             {/* Three Feature Cards with Clean White Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
               {/* Feature 1: Ask your code */}
-              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-indigo-500/40 hover:shadow-xl">
+              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm transition-all duration-300 hover:border-indigo-500/40 hover:shadow-xl hover:-translate-y-1">
                 <div>
-                  <div className="flex size-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 mb-5 border border-indigo-100 shadow-xs">
-                    <Bot className="size-6" />
+                  <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 mb-4 sm:mb-5 border border-indigo-100 shadow-xs">
+                    <Bot className="size-5 sm:size-6" />
                   </div>
-                  <h3 className="text-2xl font-bold tracking-tight font-brand text-slate-950">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight font-brand text-slate-950">
                     Ask your code
                   </h3>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Ask questions in plain English and receive instant answers citing exact source files and line numbers.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="mt-5 sm:mt-6 pt-4 border-t border-slate-100">
                   <QaMockup />
                 </div>
               </div>
 
               {/* Feature 2: Commit summaries */}
-              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-violet-500/40 hover:shadow-xl">
+              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm transition-all duration-300 hover:border-violet-500/40 hover:shadow-xl hover:-translate-y-1">
                 <div>
-                  <div className="flex size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 mb-5 border border-violet-100 shadow-xs">
-                    <GitCommit className="size-6" />
+                  <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 mb-4 sm:mb-5 border border-violet-100 shadow-xs">
+                    <GitCommit className="size-5 sm:size-6" />
                   </div>
-                  <h3 className="text-2xl font-bold tracking-tight font-brand text-slate-950">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight font-brand text-slate-950">
                     Commit summaries
                   </h3>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Automatically generates concise, intelligent commit summaries with every code change synced from GitHub.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="mt-5 sm:mt-6 pt-4 border-t border-slate-100">
                   <CommitsMockup />
                 </div>
               </div>
 
               {/* Feature 3: Meeting notes */}
-              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-emerald-500/40 hover:shadow-xl">
+              <div className="group flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm transition-all duration-300 hover:border-emerald-500/40 hover:shadow-xl hover:-translate-y-1">
                 <div>
-                  <div className="flex size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mb-5 border border-emerald-100 shadow-xs">
-                    <Headphones className="size-6" />
+                  <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mb-4 sm:mb-5 border border-emerald-100 shadow-xs">
+                    <Headphones className="size-5 sm:size-6" />
                   </div>
-                  <h3 className="text-2xl font-bold tracking-tight font-brand text-slate-950">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight font-brand text-slate-950">
                     Meeting notes
                   </h3>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Upload meeting audio to automatically extract timestamped issues, summaries, and action items.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="mt-5 sm:mt-6 pt-4 border-t border-slate-100">
                   <MeetingsMockup />
                 </div>
               </div>
@@ -151,16 +150,16 @@ export default async function HomePage() {
         </section>
 
         {/* 5. HOW IT WORKS SECTION (Signature Git Branch Line with Memory Rings) */}
-        <section id="how-it-works" className="py-24 sm:py-32 border-t border-slate-200 bg-slate-50/60">
+        <section id="how-it-works" className="py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-slate-50/60">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700 text-xs font-semibold px-3 py-1 mb-3">
                 Simple 3-Step Flow
               </Badge>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
                 How Engram builds your codebase memory
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-slate-600 leading-relaxed px-2">
                 Connect your repository in under thirty seconds. We handle parsing, vector indexing, and synchronization automatically.
               </p>
             </div>
@@ -170,7 +169,7 @@ export default async function HomePage() {
         </section>
 
         {/* 6. TEAM KNOWLEDGE SECTION */}
-        <section className="py-24 sm:py-32 border-t border-slate-200 bg-white">
+        <section className="py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
               {/* Left Column: Headline, bullets */}
@@ -245,56 +244,56 @@ export default async function HomePage() {
         </section>
 
         {/* 7. TRUST SECTION (Three Honest Developer-First Points) */}
-        <section className="py-24 sm:py-32 border-t border-slate-200 bg-slate-50/70">
+        <section className="py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-slate-50/70">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700 text-xs font-semibold px-3 py-1 mb-3">
                 Honest Engineering
               </Badge>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
                 Built on transparency developers trust
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-slate-600 leading-relaxed px-2">
                 No marketing exaggerations. Here is exactly how Engram handles your code, security, and billing.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {/* Trust Point 1 */}
-              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xs space-y-3.5 hover:border-indigo-500/40 transition-colors">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100">
-                  <FileCode2 className="size-6" />
+              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-xs space-y-3.5 hover:border-indigo-500/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-xs">
+                  <FileCode2 className="size-5 sm:size-6" />
                 </div>
-                <h3 className="text-xl font-bold tracking-tight font-brand text-slate-950">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight font-brand text-slate-950">
                   Answers cite their source files
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Every answer references the exact source files and line numbers it was retrieved from, with syntax-highlighted code blocks for instant verification.
                 </p>
               </div>
 
               {/* Trust Point 2 */}
-              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xs space-y-3.5 hover:border-violet-500/40 transition-colors">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 border border-violet-100">
-                  <ShieldCheck className="size-6" />
+              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-xs space-y-3.5 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 border border-violet-100 shadow-xs">
+                  <ShieldCheck className="size-5 sm:size-6" />
                 </div>
-                <h3 className="text-xl font-bold tracking-tight font-brand text-slate-950">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight font-brand text-slate-950">
                   Role-based access per project
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Granular Owner and Member roles enforce strict project isolation. Personal Access Tokens and billing controls stay securely locked to authorized owners.
                 </p>
               </div>
 
               {/* Trust Point 3 */}
-              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xs space-y-3.5 hover:border-emerald-500/40 transition-colors">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                  <Coins className="size-6" />
+              <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-xs space-y-3.5 hover:border-emerald-500/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <div className="flex size-11 sm:size-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-xs">
+                  <Coins className="size-5 sm:size-6" />
                 </div>
-                <h3 className="text-xl font-bold tracking-tight font-brand text-slate-950">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight font-brand text-slate-950">
                   Pay per use with visible balance
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Pay only 1 credit per indexed file with transparent $1 = 50 credits one-time purchases. No hidden subscription fees, lock-ins, or surprise bills.
                 </p>
               </div>
@@ -303,16 +302,16 @@ export default async function HomePage() {
         </section>
 
         {/* 8. PRICING SECTION */}
-        <section id="pricing" className="py-24 sm:py-32 border-t border-slate-200 bg-white">
+        <section id="pricing" className="py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
               <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700 text-xs font-semibold px-3 py-1 mb-3">
                 Simple &amp; Predictable
               </Badge>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
                 One-time credits. Zero subscriptions.
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-slate-600 leading-relaxed px-2">
                 Get 150 free credits upon signup. Purchase additional credits on demand via Stripe whenever your codebase grows.
               </p>
             </div>
@@ -322,68 +321,68 @@ export default async function HomePage() {
         </section>
 
         {/* 9. FAQ SECTION */}
-        <section id="faq" className="py-24 sm:py-32 border-t border-slate-200 bg-slate-50/50">
+        <section id="faq" className="py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-slate-50/50">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
               <Badge variant="outline" className="border-indigo-200 bg-indigo-50/80 text-indigo-700 text-xs font-semibold px-3 py-1 mb-3">
                 Got Questions?
               </Badge>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-brand text-slate-950">
                 Frequently Asked Questions
               </h2>
-              <p className="mt-4 text-base text-slate-600 leading-relaxed">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-base text-slate-600 leading-relaxed px-2">
                 Clear answers on tokens, supported languages, credit consumption, and data privacy.
               </p>
             </div>
 
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-6 sm:p-9 shadow-sm">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-9 shadow-sm">
               <Accordion>
                 {/* FAQ 1: Private Repos */}
                 <AccordionItem value="faq-1">
-                  <AccordionTrigger className="text-base font-semibold text-slate-900 hover:text-indigo-600">
+                  <AccordionTrigger className="text-sm sm:text-base font-semibold text-slate-900 hover:text-indigo-600 text-left">
                     Can I index private GitHub repositories?
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600">
+                  <AccordionContent className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Yes. When connecting a private repository, provide a GitHub Personal Access Token (classic or fine-grained with <code className="text-indigo-700 font-mono bg-indigo-50 px-1 py-0.5 rounded">repo</code> read permissions). Your token is stored encrypted per project and allows Engram to access source code and git commits securely without hitting public GitHub rate limits.
                   </AccordionContent>
                 </AccordionItem>
 
                 {/* FAQ 2: Which Languages */}
                 <AccordionItem value="faq-2">
-                  <AccordionTrigger className="text-base font-semibold text-slate-900 hover:text-indigo-600">
+                  <AccordionTrigger className="text-sm sm:text-base font-semibold text-slate-900 hover:text-indigo-600 text-left">
                     Which programming languages are supported?
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600">
+                  <AccordionContent className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Engram indexes any text-based source files across TypeScript, JavaScript, Python, Go, Rust, Java, C/C++, Ruby, PHP, Swift, Kotlin, SQL, HTML/CSS, and more. Non-text assets, binary files, lockfiles (such as <code className="font-mono text-indigo-700">package-lock.json</code>), and vendor packages are automatically filtered out to save you credits.
                   </AccordionContent>
                 </AccordionItem>
 
                 {/* FAQ 3: What a credit buys */}
                 <AccordionItem value="faq-3">
-                  <AccordionTrigger className="text-base font-semibold text-slate-900 hover:text-indigo-600">
+                  <AccordionTrigger className="text-sm sm:text-base font-semibold text-slate-900 hover:text-indigo-600 text-left">
                     What does a credit buy?
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600">
+                  <AccordionContent className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     One credit indexes one source code file. You receive 150 free credits upon signup. Additional credits are purchased as a one-time top-up ($1 gives you 50 credits). Asking questions, reviewing commit summaries, and collaborating with team members do not consume any credits.
                   </AccordionContent>
                 </AccordionItem>
 
                 {/* FAQ 4: Is code stored */}
                 <AccordionItem value="faq-4">
-                  <AccordionTrigger className="text-base font-semibold text-slate-900 hover:text-indigo-600">
+                  <AccordionTrigger className="text-sm sm:text-base font-semibold text-slate-900 hover:text-indigo-600 text-left">
                     Is my source code stored?
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600">
+                  <AccordionContent className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Embeddings (vector representations) and indexed file text are stored in your database with PostgreSQL pgvector to perform semantic similarity search and synthesize answers with accurate source citations. Your code is never used to train public foundational AI models.
                   </AccordionContent>
                 </AccordionItem>
 
                 {/* FAQ 5: Who can see answers */}
                 <AccordionItem value="faq-5">
-                  <AccordionTrigger className="text-base font-semibold text-slate-900 hover:text-indigo-600">
+                  <AccordionTrigger className="text-sm sm:text-base font-semibold text-slate-900 hover:text-indigo-600 text-left">
                     Who can see saved questions and answers?
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600">
+                  <AccordionContent className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Only authorized members of your project workspace can view repository data, ask questions, and browse saved answers. Project owners can invite collaborators via invite links or revoke member access at any time.
                   </AccordionContent>
                 </AccordionItem>
@@ -393,26 +392,26 @@ export default async function HomePage() {
         </section>
 
         {/* 10. FINAL CTA BAND WITH GRADIENT */}
-        <section className="relative overflow-hidden py-24 sm:py-32 border-t border-slate-200 bg-white">
+        <section className="relative overflow-hidden py-16 sm:py-24 lg:py-32 border-t border-slate-200 bg-white">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.08),transparent_70%)]" />
 
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="rounded-3xl border border-indigo-900/20 bg-gradient-to-r from-indigo-950 via-slate-900 to-violet-950 p-8 sm:p-16 shadow-2xl relative overflow-hidden text-white">
+            <div className="rounded-2xl sm:rounded-3xl border border-indigo-900/20 bg-gradient-to-r from-indigo-950 via-slate-900 to-violet-950 p-6 sm:p-12 md:p-16 shadow-2xl relative overflow-hidden text-white">
               <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-indigo-500/20 blur-3xl" />
               <div className="pointer-events-none absolute -left-24 -bottom-24 size-72 rounded-full bg-violet-600/20 blur-3xl" />
 
-              <h2 className="text-4xl sm:text-6xl font-black tracking-tight font-brand text-white leading-tight">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight font-brand text-white leading-tight">
                 Give your codebase a memory.
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-4 text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed px-2">
                 Connect your repository in seconds, search in plain English, and preserve engineering knowledge forever.
               </p>
 
-              <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-md sm:max-w-none mx-auto">
                 <Link href={isSignedIn ? "/dashboard" : "/sign-up"} className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto h-13 px-9 text-base font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 text-white shadow-xl shadow-indigo-500/30 gap-2 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full sm:w-auto h-12 sm:h-13 px-7 sm:px-9 text-sm sm:text-base font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 text-white shadow-xl shadow-indigo-500/30 gap-2 cursor-pointer hover:scale-[1.02] active:scale-[0.98] touch-friendly"
                   >
                     <span>{isSignedIn ? "Open dashboard" : "Start free with 150 credits"}</span>
                     <ArrowRight className="size-4.5" />
@@ -422,14 +421,14 @@ export default async function HomePage() {
                 <Link href="#how-it-works" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto h-13 px-8 text-base font-semibold rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20 shadow-xl cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full sm:w-auto h-12 sm:h-13 px-6 sm:px-8 text-sm sm:text-base font-semibold rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20 shadow-xl cursor-pointer hover:scale-[1.02] active:scale-[0.98] touch-friendly"
                   >
                     <span>See how it works</span>
                   </Button>
                 </Link>
               </div>
 
-              <p className="mt-5 text-xs text-slate-400">
+              <p className="mt-5 text-[11px] sm:text-xs text-slate-400">
                 150 free credits on signup &bull; No credit card required &bull; One-time purchases only
               </p>
             </div>

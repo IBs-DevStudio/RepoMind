@@ -17,24 +17,24 @@ export function PricingSlider({ isSignedIn = false }: PricingSliderProps) {
   const repoExampleCost = Math.round(200 / 50);
 
   return (
-    <div className="relative mx-auto max-w-xl overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xl">
+    <div className="relative mx-auto max-w-xl overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-8 shadow-xl">
       {/* Background radial glow */}
       <div className="pointer-events-none absolute -top-24 -left-24 size-64 rounded-full bg-indigo-500/10 blur-3xl -z-10" />
       <div className="pointer-events-none absolute -bottom-24 -right-24 size-64 rounded-full bg-violet-600/10 blur-3xl -z-10" />
 
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 pb-6 border-b border-slate-100">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 sm:pb-6 border-b border-slate-100">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 font-brand">
             Transparent Pricing
           </span>
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 mt-0.5">
+          <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-slate-950 mt-0.5">
             Pay only for what you index
           </h3>
         </div>
         <Badge
           variant="outline"
-          className="border-indigo-200 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 gap-1.5 shadow-2xs"
+          className="self-start sm:self-auto border-indigo-200 bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 gap-1.5 shadow-2xs"
         >
           <Sparkles className="size-3 text-indigo-600" />
           150 free credits on signup
@@ -42,27 +42,27 @@ export function PricingSlider({ isSignedIn = false }: PricingSliderProps) {
       </div>
 
       {/* Main Dynamic Calculator */}
-      <div className="py-6 space-y-6">
+      <div className="py-5 sm:py-6 space-y-5 sm:space-y-6">
         <div className="flex items-baseline justify-between">
           <div>
-            <p className="text-sm font-medium text-slate-500">Select Repository Capacity</p>
-            <p className="text-3xl sm:text-5xl font-black tracking-tight font-brand text-slate-950 mt-1">
+            <p className="text-xs sm:text-sm font-medium text-slate-500">Select Repository Capacity</p>
+            <p className="text-2xl sm:text-5xl font-black tracking-tight font-brand text-slate-950 mt-1">
               {credits}{" "}
-              <span className="text-base sm:text-lg font-semibold text-slate-500 font-sans">
+              <span className="text-sm sm:text-lg font-semibold text-slate-500 font-sans">
                 credits
               </span>
             </p>
           </div>
           <div className="text-right">
-            <p className="text-xs font-medium text-slate-500">One-time payment</p>
-            <p className="text-3xl sm:text-5xl font-black tracking-tight font-brand bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent mt-1">
+            <p className="text-[11px] sm:text-xs font-medium text-slate-500">One-time payment</p>
+            <p className="text-2xl sm:text-5xl font-black tracking-tight font-brand bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent mt-1">
               ${price}
             </p>
           </div>
         </div>
 
-        {/* Range Slider */}
-        <div className="space-y-2">
+        {/* Range Slider - Enhanced for Touch Screens */}
+        <div className="space-y-2.5">
           <input
             type="range"
             min={50}
@@ -70,10 +70,10 @@ export function PricingSlider({ isSignedIn = false }: PricingSliderProps) {
             step={50}
             value={credits}
             onChange={(e) => setCredits(Number(e.target.value))}
-            className="w-full h-2.5 rounded-lg bg-slate-200 appearance-none cursor-pointer accent-indigo-600 focus:outline-hidden"
+            className="w-full h-3 rounded-lg bg-slate-200 appearance-none cursor-pointer accent-indigo-600 focus:outline-hidden touch-friendly py-1"
             aria-label="Select credits amount"
           />
-          <div className="flex justify-between text-[11px] font-mono text-slate-500">
+          <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-500">
             <span>50 credits ($1)</span>
             <span>500 credits ($10)</span>
             <span>1,000 credits ($20)</span>
@@ -81,7 +81,7 @@ export function PricingSlider({ isSignedIn = false }: PricingSliderProps) {
         </div>
 
         {/* Example Line */}
-        <div className="rounded-xl border border-indigo-200 bg-indigo-50/70 px-4 py-3 text-xs sm:text-sm text-slate-800 flex items-center gap-2.5">
+        <div className="rounded-xl border border-indigo-200 bg-indigo-50/70 px-3.5 py-3 text-xs sm:text-sm text-slate-800 flex items-center gap-2.5">
           <Coins className="size-4 text-indigo-600 flex-none" />
           <p>
             A <strong>200-file repository</strong> costs 200 credits (about ${repoExampleCost}).
@@ -114,7 +114,7 @@ export function PricingSlider({ isSignedIn = false }: PricingSliderProps) {
         <Link href={isSignedIn ? "/dashboard" : "/sign-up"} className="block">
           <Button
             size="lg"
-            className="w-full text-sm font-semibold h-12 shadow-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white gap-2 transition-all cursor-pointer shadow-indigo-500/25"
+            className="w-full text-sm font-semibold h-12 shadow-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white gap-2 transition-all cursor-pointer shadow-indigo-500/25 hover:scale-[1.01] active:scale-[0.99] touch-friendly"
           >
             <span>{isSignedIn ? "Open Dashboard" : "Start free with 150 credits"}</span>
             <ArrowRight className="size-4" />

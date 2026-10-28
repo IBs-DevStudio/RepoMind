@@ -31,39 +31,41 @@ export default function MeetingsPage() {
         <p className="text-muted-foreground text-sm">No meetings found</p>
       )}
 
-      <ul className="divide-y">
+      <ul className="divide-y divide-border/60">
         {meetings?.map((meeting) => (
           <li
             key={meeting.id}
-            className="flex items-center justify-between gap-x-6 py-5"
+            className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-4 hover:bg-muted/30 transition-colors px-2 sm:px-3 rounded-xl"
           >
-            <div>
-              <div className="flex items-center gap-2">
+            <div className="min-w-0 flex-1 space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
                 <Link
                   href={`/meetings/${meeting.id}`}
-                  className="text-sm font-semibold hover:underline"
+                  className="text-sm font-semibold hover:text-primary transition-colors truncate max-w-full"
                 >
                   {meeting.name}
                 </Link>
                 {meeting.status === "PROCESSING" && (
-                  <Badge className="bg-yellow-500 text-white">Processing...</Badge>
+                  <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30 text-[10px]">Processing...</Badge>
                 )}
               </div>
               <div className="text-muted-foreground flex items-center gap-x-2 text-xs">
                 <p>{meeting.createdAt.toLocaleDateString()}</p>
+                <span>&bull;</span>
                 <p>{meeting.issues.length} issues</p>
               </div>
             </div>
 
-            <div className="flex flex-none items-center gap-x-3">
+            <div className="flex items-center gap-2.5 self-end sm:self-auto flex-none">
               <Link href={`/meetings/${meeting.id}`}>
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="outline" className="h-8 text-xs touch-friendly">
                   View Meeting
                 </Button>
               </Link>
               <Button
                 size="sm"
                 variant="destructive"
+                className="h-8 text-xs touch-friendly"
                 disabled={deleteMeeting.isPending}
                 onClick={() =>
                   deleteMeeting.mutate(

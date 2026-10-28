@@ -123,7 +123,7 @@ export default function CommitLog() {
           const details = overall ? points.slice(0, -1) : points;
 
           return (
-            <li key={commit.id} className="relative flex gap-4">
+            <li key={commit.id} className="relative flex gap-2.5 sm:gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={commit.commitAuthorAvatar}
@@ -131,8 +131,8 @@ export default function CommitLog() {
                 className="bg-muted ring-background relative z-10 size-8 flex-none rounded-full ring-4"
               />
 
-              <div className="bg-card min-w-0 flex-1 rounded-xl border p-4 shadow-sm transition-shadow hover:shadow-md">
-                <div className="flex items-center justify-between gap-3">
+              <div className="bg-card min-w-0 flex-1 rounded-xl border p-3.5 sm:p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-muted-foreground truncate text-xs">
                     <span className="text-foreground font-medium">
                       {commit.commitAuthorName}
@@ -149,19 +149,19 @@ export default function CommitLog() {
                   </Link>
                 </div>
 
-                <h3 className="mt-2 text-[15px] leading-snug font-semibold">
+                <h3 className="mt-2 text-[14px] sm:text-[15px] leading-snug font-semibold break-words">
                   {title}
                 </h3>
 
                 {details.length > 0 && (
                   <ul className="mt-3 space-y-1.5">
                     {details.map((p, i) => (
-                      <li key={i} className="flex gap-2 text-sm leading-6">
-                        <span className="bg-primary/60 mt-2.5 size-1.5 flex-none rounded-full" />
-                        <span className="text-muted-foreground">
+                      <li key={i} className="flex gap-2 text-xs sm:text-sm leading-relaxed sm:leading-6">
+                        <span className="bg-primary/60 mt-2 size-1.5 flex-none rounded-full" />
+                        <span className="text-muted-foreground break-words">
                           {p.text}
                           {p.file && (
-                            <code className="bg-muted text-foreground/80 ml-1.5 rounded px-1.5 py-0.5 font-mono text-xs break-all">
+                            <code className="bg-muted text-foreground/80 ml-1.5 rounded px-1.5 py-0.5 font-mono text-[11px] sm:text-xs break-all">
                               {p.file}
                             </code>
                           )}
@@ -172,9 +172,9 @@ export default function CommitLog() {
                 )}
 
                 {overall && (
-                  <div className="bg-primary/5 mt-3 flex gap-2 rounded-lg p-3 text-sm leading-6">
-                    <Sparkles className="text-primary mt-1 size-4 flex-none" />
-                    <p>{overall.text}</p>
+                  <div className="bg-primary/5 mt-3 flex gap-2 rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm leading-relaxed sm:leading-6">
+                    <Sparkles className="text-primary mt-0.5 size-4 flex-none" />
+                    <p className="break-words">{overall.text}</p>
                   </div>
                 )}
               </div>

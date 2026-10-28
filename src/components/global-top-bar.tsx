@@ -7,7 +7,6 @@ import {
   CreditCard,
   ExternalLink,
   FolderGit2,
-  GitCommit,
   LayoutDashboard,
   Plus,
   Presentation,
@@ -177,10 +176,10 @@ export function GlobalTopBar() {
 
   return (
     <>
-      <header className="relative flex items-center justify-between gap-3 rounded-xl border border-border/80 bg-card/80 px-3.5 py-2.5 backdrop-blur-xl shadow-xs transition-all sm:px-4">
+      <header className="relative flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-border/80 bg-card/80 px-2.5 py-2 sm:px-4 sm:py-2.5 backdrop-blur-xl shadow-xs transition-all">
         {/* Left Side: Sidebar trigger + Active Project badge */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <SidebarTrigger className="text-muted-foreground transition-colors hover:text-foreground" />
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <SidebarTrigger className="text-muted-foreground transition-colors hover:text-foreground touch-friendly" />
 
           {project && (
             <div className="hidden sm:flex items-center gap-2 rounded-lg border border-border/70 bg-muted/30 px-2.5 py-1 text-xs font-medium text-foreground transition-colors">
@@ -194,20 +193,23 @@ export function GlobalTopBar() {
         </div>
 
         {/* Center: Search Bar Trigger */}
-        <div className="flex flex-1 justify-center max-w-xl px-2">
+        <div className="flex flex-1 justify-center max-w-xl px-1 sm:px-2 min-w-0">
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="group relative flex h-9.5 w-full items-center justify-between gap-3 rounded-xl border border-border/80 bg-background/50 px-3 text-xs text-muted-foreground transition-all hover:border-primary/50 hover:bg-background/80 hover:text-foreground hover:shadow-sm"
+            className="group relative flex h-9 sm:h-9.5 w-full items-center justify-between gap-2 sm:gap-3 rounded-xl border border-border/80 bg-background/50 px-2.5 sm:px-3 text-xs text-muted-foreground transition-all hover:border-primary/50 hover:bg-background/80 hover:text-foreground hover:shadow-xs touch-friendly"
           >
-            <div className="flex items-center gap-2.5 truncate">
-              <Search className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
-              <span className="truncate">
+            <div className="flex items-center gap-2 truncate min-w-0">
+              <Search className="size-3.5 sm:size-4 text-muted-foreground transition-colors group-hover:text-primary flex-none" />
+              <span className="truncate hidden sm:inline">
                 Search commits, projects, or ask Engram...
+              </span>
+              <span className="truncate sm:hidden text-[11px]">
+                Search or ask AI...
               </span>
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 flex-none">
               <kbd className="pointer-events-none hidden items-center gap-0.5 rounded-md border border-border/80 bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
                 <Command className="size-2.5" /> K
               </kbd>
@@ -216,7 +218,7 @@ export function GlobalTopBar() {
         </div>
 
         {/* Right Side: GitHub link, Theme Toggle, Clerk Profile */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
           {project?.githubUrl && (
             <Link
               href={project.githubUrl}
@@ -227,7 +229,7 @@ export function GlobalTopBar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-8.5 rounded-lg border border-border/70 bg-background/50 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-accent hover:text-foreground"
+                className="size-8.5 rounded-lg border border-border/70 bg-background/50 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-accent hover:text-foreground touch-friendly"
                 title="Open GitHub Repository"
               >
                 <FaGithub className="size-4" />
@@ -242,7 +244,7 @@ export function GlobalTopBar() {
 
       {/* Global Command / Search Palette Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-2xl overflow-hidden p-0 gap-0 border-border/80 bg-card/95 backdrop-blur-2xl shadow-2xl">
+        <DialogContent className="w-[94vw] max-w-2xl max-h-[88dvh] overflow-hidden p-0 gap-0 border-border/80 bg-card/95 backdrop-blur-2xl shadow-2xl rounded-2xl">
           <DialogHeader className="sr-only">
             <DialogTitle>Search Repository & Workspace</DialogTitle>
           </DialogHeader>

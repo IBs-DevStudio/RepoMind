@@ -84,10 +84,10 @@ export function AuthPageShell({ children, mode }: AuthPageShellProps) {
 
         <div className="w-full max-w-[540px] flex flex-col items-center">
           {/* Top Banner: DEMO CREDENTIALS & QUICK ACCESS */}
-          <div className="w-full mb-8 rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="w-full mb-6 sm:mb-8 rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
             <div className="space-y-1">
               <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                <Sparkles className="size-3 text-indigo-600" />
+                <Sparkles className="size-3 text-indigo-600 animate-pulse" />
                 DEMO CREDENTIALS
               </span>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -97,7 +97,7 @@ export function AuthPageShell({ children, mode }: AuthPageShellProps) {
 
             <button
               onClick={() => setShowDemoModal(true)}
-              className="rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 px-3.5 py-1.5 text-xs font-semibold text-slate-800 transition-all shrink-0 cursor-pointer shadow-2xs"
+              className="rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 px-3.5 py-1.5 text-xs font-semibold text-slate-800 transition-all shrink-0 cursor-pointer shadow-2xs w-full sm:w-auto text-center active:scale-[0.98] touch-manipulation"
             >
               View demo details
             </button>
@@ -112,8 +112,8 @@ export function AuthPageShell({ children, mode }: AuthPageShellProps) {
 
       {/* Demo Details Modal */}
       {showDemoModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-xs p-3 sm:p-4 animate-in fade-in duration-200">
+          <div className="relative w-[94vw] max-w-md rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <EngramIcon size={24} />
@@ -152,7 +152,7 @@ export function AuthPageShell({ children, mode }: AuthPageShellProps) {
             <div className="pt-3 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setShowDemoModal(false)}
-                className="rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 text-xs font-semibold transition-colors cursor-pointer"
+                className="w-full sm:w-auto rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 text-xs font-semibold transition-colors cursor-pointer active:scale-[0.98] touch-manipulation"
               >
                 Got it, continue
               </button>

@@ -43,19 +43,19 @@ export default function BillingClient({
         </div>
       )}
 
-      <div className="bg-card rounded-2xl border p-6 shadow-sm">
-        <p className="text-muted-foreground text-sm">Your balance</p>
-        <p className="text-4xl font-bold tracking-tight">
+      <div className="bg-card rounded-2xl border p-5 sm:p-6 shadow-sm">
+        <p className="text-muted-foreground text-xs sm:text-sm">Your balance</p>
+        <p className="text-3xl sm:text-4xl font-bold tracking-tight mt-1">
           {balance ?? "..."}{" "}
-          <span className="text-muted-foreground text-base font-medium">credits</span>
+          <span className="text-muted-foreground text-sm sm:text-base font-medium">credits</span>
         </p>
       </div>
 
-      <div className="bg-card space-y-4 rounded-2xl border p-6 shadow-sm">
+      <div className="bg-card space-y-4 rounded-2xl border p-5 sm:p-6 shadow-sm">
         <div className="flex items-baseline justify-between">
-          <p className="font-semibold">Buy credits</p>
-          <p className="text-sm">
-            <strong>{credits}</strong> credits · ${(credits / 50).toFixed(2)}
+          <p className="font-semibold text-sm sm:text-base">Buy credits</p>
+          <p className="text-xs sm:text-sm">
+            <strong className="text-primary font-bold">{credits}</strong> credits · ${(credits / 50).toFixed(2)}
           </p>
         </div>
         <input
@@ -65,10 +65,16 @@ export default function BillingClient({
           step={50}
           value={credits}
           onChange={(e) => setCredits(Number(e.target.value))}
-          className="accent-primary w-full"
+          className="accent-primary w-full h-3 rounded-lg bg-muted appearance-none cursor-pointer touch-friendly py-1"
+          aria-label="Select credits amount"
         />
+        <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-muted-foreground">
+          <span>50 credits ($1)</span>
+          <span>500 credits ($10)</span>
+          <span>1,000 credits ($20)</span>
+        </div>
         <Button
-          className="w-full"
+          className="w-full h-11 touch-friendly font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-md active:scale-[0.99] transition-all"
           disabled={pending}
           onClick={() => startTransition(() => createCheckoutSession(credits))}
         >

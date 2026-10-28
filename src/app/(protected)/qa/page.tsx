@@ -8,13 +8,10 @@ import {
     Clock,
     Copy,
     FileCode2,
-    Filter,
-    MessageSquareText,
     Search,
     ShieldCheck,
     Sparkles,
     X,
-    Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -115,31 +112,31 @@ export default function QAPage() {
     }
 
     return (
-        <div className="space-y-8 pb-12">
+        <div className="space-y-6 sm:space-y-8 pb-12">
             {/* Hero Header Banner */}
-            <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.04] p-6 shadow-sm">
+            <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.04] p-4 sm:p-6 shadow-sm">
                 {/* Subtle Ambient Decorative Gradient Circles */}
-                <div className="pointer-events-none absolute -top-24 -right-24 size-96 rounded-full bg-primary/10 blur-3xl" />
+                <div className="pointer-events-none absolute -top-24 -right-24 size-96 rounded-full bg-primary/10 blur-3xl animate-pulse-glow" />
                 <div className="pointer-events-none absolute -bottom-24 -left-24 size-80 rounded-full bg-blue-500/5 blur-2xl" />
 
                 <div className="relative z-10 flex flex-col gap-3">
                     <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary w-fit">
-                        <Sparkles className="size-3 text-primary" />
+                        <Sparkles className="size-3 text-primary animate-pulse" />
                         <span>Engram Intelligence Hub</span>
                     </div>
 
                     <div className="space-y-1">
-                        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+                        <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-foreground">
                             Engram Architectural Q&A
                         </h1>
 
-                        <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                            our codebase’s memory. Ask architectural questions, trace complex execution paths, and preserve permanent engineering knowledge.
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                            Your codebase’s memory. Ask architectural questions, trace complex execution paths, and preserve permanent engineering knowledge.
                         </p>
                     </div>
 
                     {/* Value Badges */}
-                    <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1 text-xs text-muted-foreground">
                         {questions && (
                             <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-medium">
                                 <BookOpen className="size-3.5 text-primary" />
@@ -148,15 +145,15 @@ export default function QAPage() {
                         )}
                         <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-medium">
                             <Check className="size-3.5 text-emerald-500" />
-                            <span>Grounded in your source code</span>
+                            <span>Grounded in source code</span>
                         </span>
                         <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-medium">
                             <FileCode2 className="size-3.5 text-primary" />
-                            <span>Answers cite real files</span>
+                            <span>Cites real files</span>
                         </span>
                         <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-medium">
                             <ShieldCheck className="size-3.5 text-emerald-500" />
-                            <span>Verifiable answers</span>
+                            <span>Verifiable</span>
                         </span>
                     </div>
                 </div>
@@ -295,11 +292,11 @@ export default function QAPage() {
                                     setSelectedId(q.id);
                                     setOpen(true);
                                 }}
-                                className="group relative flex cursor-pointer flex-col justify-between rounded-xl border border-border/80 bg-card p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md"
+                                className="group relative flex cursor-pointer flex-col justify-between rounded-xl border border-border/80 bg-card p-4 sm:p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md active:scale-[0.99] touch-manipulation"
                             >
                                 <div>
                                     {/* Card Header: Author, Date & File Badges */}
-                                    <div className="flex items-center justify-between gap-2 pb-3 border-b border-border/50">
+                                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-border/50">
                                         <div className="flex items-center gap-2 min-w-0">
                                             {q.user.imageUrl ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
@@ -318,7 +315,7 @@ export default function QAPage() {
                                             </span>
                                         </div>
 
-                                        <div className="flex items-center gap-2 flex-none">
+                                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-none">
                                             {fileRefs.length > 0 && (
                                                 <span className="inline-flex items-center gap-1 rounded-md border border-primary/20 bg-primary/5 px-2 py-0.5 text-[10px] font-medium text-primary">
                                                     <FileCode2 className="size-3" />
@@ -333,12 +330,12 @@ export default function QAPage() {
                                     </div>
 
                                     {/* Question Title */}
-                                    <h3 className="mt-3 text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                                    <h3 className="mt-3 text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug break-words">
                                         {q.question}
                                     </h3>
 
                                     {/* Clean Markdown Snippet Preview */}
-                                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed break-words">
                                         {cleanSnippet(q.answer)}
                                     </p>
                                 </div>
@@ -353,7 +350,7 @@ export default function QAPage() {
                                     <button
                                         type="button"
                                         onClick={(e) => handleCopyQuestion(e, q.id, q.answer)}
-                                        className="inline-flex items-center gap-1 rounded-md p-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                                        className="inline-flex items-center gap-1 rounded-md p-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors touch-manipulation"
                                         title="Copy Answer"
                                     >
                                         {isCopied ? (
@@ -375,14 +372,14 @@ export default function QAPage() {
                     {selected && (
                         <div className="flex min-h-full flex-col">
                             {/* Sheet Header with Tagline & High-Tech Styling */}
-                            <SheetHeader className="bg-gradient-to-b from-muted/50 via-muted/20 to-background border-b p-6 pr-14 space-y-4">
+                            <SheetHeader className="bg-gradient-to-b from-muted/50 via-muted/20 to-background border-b p-4 sm:p-6 pr-12 sm:pr-14 space-y-3 sm:space-y-4">
                                 <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary w-fit">
                                     <Sparkles className="size-3.5 text-primary" />
-                                    <span>ARCHIVED CODE INTELLIGENCE • REPOSITORY RECORD</span>
+                                    <span className="truncate">ARCHIVED CODE INTELLIGENCE • REPOSITORY RECORD</span>
                                 </div>
 
                                 <div className="space-y-1">
-                                    <SheetTitle className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-foreground">
+                                    <SheetTitle className="text-lg sm:text-2xl font-bold leading-snug tracking-tight text-foreground break-words">
                                         {selected.question}
                                     </SheetTitle>
                                     <p className="text-xs sm:text-sm text-muted-foreground font-normal">
@@ -392,7 +389,7 @@ export default function QAPage() {
 
                                 {/* Team Member Attribution & Copy Action */}
                                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-border/50">
-                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                                         {selected.user.imageUrl ? (
                                             // eslint-disable-next-line @next/next/no-img-element
                                             <img
@@ -419,7 +416,7 @@ export default function QAPage() {
                                         variant="outline"
                                         size="sm"
                                         onClick={() => handleCopySheet(selected.answer)}
-                                        className="h-8 gap-1.5 text-xs font-medium"
+                                        className="h-8 gap-1.5 text-xs font-medium active:scale-[0.98] touch-manipulation"
                                     >
                                         {sheetCopied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
                                         {sheetCopied ? "Copied" : "Copy Solution"}
@@ -428,20 +425,20 @@ export default function QAPage() {
                             </SheetHeader>
 
                             {/* Sheet Body: Answer & Code References */}
-                            <div className="min-w-0 flex-1 space-y-8 p-6">
+                            <div className="min-w-0 flex-1 space-y-6 sm:space-y-8 p-3.5 sm:p-6">
                                 <section>
                                     <div className="mb-3 flex items-center justify-between">
                                         <h3 className="text-xs font-bold tracking-wider text-muted-foreground uppercase flex items-center gap-1.5">
                                             <Sparkles className="size-3.5 text-primary" />
                                             <span>Synthesized Analysis</span>
                                         </h3>
-                                        <span className="text-[11px] text-muted-foreground">
+                                        <span className="text-[11px] text-muted-foreground hidden sm:inline">
                                             Grounded in AST & commit history
                                         </span>
                                     </div>
 
-                                    <div className="rounded-2xl border bg-card p-6 shadow-sm">
-                                        <div data-color-mode="light">
+                                    <div className="rounded-xl sm:rounded-2xl border bg-card p-3.5 sm:p-6 shadow-sm overflow-hidden">
+                                        <div data-color-mode="light" className="overflow-x-auto touch-pan-x">
                                             <MDEditor.Markdown
                                                 source={selected.answer}
                                                 style={{
@@ -450,7 +447,7 @@ export default function QAPage() {
                                                     fontSize: "0.95rem",
                                                     lineHeight: 1.75,
                                                 }}
-                                                className="max-w-none text-foreground [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_h1]:text-xl [&_h2]:text-lg [&_h3]:text-base [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
+                                                className="max-w-none text-foreground break-words [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_h1]:text-xl [&_h2]:text-lg [&_h3]:text-base [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
                                             />
                                         </div>
                                     </div>
@@ -464,7 +461,7 @@ export default function QAPage() {
                                         </h3>
                                     </div>
 
-                                    <div className="min-w-0 overflow-hidden rounded-2xl border shadow-sm">
+                                    <div className="min-w-0 overflow-hidden rounded-xl sm:rounded-2xl border shadow-sm">
                                         <CodeReferences
                                             key={selected.id}
                                             filesReferences={toFileRefs(selected.filesReferences)}
@@ -474,12 +471,12 @@ export default function QAPage() {
                             </div>
 
                             {/* High-Tech Sheet Footer */}
-                            <div className="flex items-center justify-between border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 border-t bg-muted/30 px-4 sm:px-6 py-3 text-xs text-muted-foreground">
                                 <span className="flex items-center gap-1.5 font-mono text-[11px]">
-                                    <span className="size-1.5 rounded-full bg-emerald-500" />
+                                    <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                                     Engram Permanent Knowledge Record
                                 </span>
-                                <span className="text-[11px]">
+                                <span className="text-[11px] text-muted-foreground/80">
                                     Preserved across repository iterations
                                 </span>
                             </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Bot,
-  Check,
   Copy,
   FileCode2,
   FolderGit2,
@@ -153,21 +152,21 @@ export function DashboardMockup() {
 // 2. Q&A Mockup
 export function QaMockup() {
   return (
-    <div className="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-lg space-y-3.5 text-slate-900">
+    <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 sm:p-5 shadow-lg space-y-3.5 text-slate-900 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <Bot className="size-4 text-indigo-600" />
+          <Bot className="size-4 text-indigo-600 flex-none" />
           <span className="text-xs font-semibold font-brand text-slate-900">Codebase Q&amp;A Intelligence</span>
         </div>
-        <span className="text-[10px] font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200">
+        <span className="text-[10px] font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200 flex-none">
           pgvector Retrieval
         </span>
       </div>
 
       <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 space-y-2">
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-900">
-          <span className="size-2 rounded-full bg-indigo-600" />
-          <span>&ldquo;How does the project membership role check work?&rdquo;</span>
+        <div className="flex items-start gap-2 text-xs font-medium text-slate-900">
+          <span className="size-2 rounded-full bg-indigo-600 flex-none mt-1" />
+          <span className="leading-snug">&ldquo;How does the project membership role check work?&rdquo;</span>
         </div>
         <p className="text-xs text-slate-600 leading-relaxed">
           The application uses composite keys <code className="text-indigo-700 font-mono bg-indigo-100/70 px-1 py-0.5 rounded">[userId, projectId]</code> in Prisma. Owner permissions are verified before allowing project archiving, deletion, or team removals.
@@ -179,10 +178,10 @@ export function QaMockup() {
         <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider font-mono">
           Referenced Source Code
         </p>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 font-mono text-[11px] space-y-1 text-slate-800">
-          <div className="flex items-center justify-between text-slate-500 border-b border-slate-200 pb-1 mb-1">
-            <span className="text-indigo-600 font-medium">src/server/api/routers/project.ts</span>
-            <span>Lines 260-272</span>
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-2.5 font-mono text-[11px] space-y-1 text-slate-800 overflow-x-auto touch-pan-x">
+          <div className="flex flex-wrap items-center justify-between gap-1 text-slate-500 border-b border-slate-200 pb-1 mb-1">
+            <span className="text-indigo-600 font-medium truncate max-w-[190px]">src/server/api/routers/project.ts</span>
+            <span className="text-[10px]">Lines 260-272</span>
           </div>
           <p>
             <span className="text-indigo-600 font-semibold">if</span> (member.role !== <span className="text-emerald-600">&quot;OWNER&quot;</span>) &#123;
@@ -200,22 +199,22 @@ export function QaMockup() {
 // 3. Commits Mockup
 export function CommitsMockup() {
   return (
-    <div className="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-lg space-y-3.5 text-slate-900">
+    <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 sm:p-5 shadow-lg space-y-3.5 text-slate-900 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <GitCommit className="size-4 text-violet-600" />
+          <GitCommit className="size-4 text-violet-600 flex-none" />
           <span className="text-xs font-semibold font-brand text-slate-900">Automated Commit Summaries</span>
         </div>
-        <span className="text-[10px] font-mono bg-violet-50 text-violet-700 px-2 py-0.5 rounded-full font-medium border border-violet-200">
+        <span className="text-[10px] font-mono bg-violet-50 text-violet-700 px-2 py-0.5 rounded-full font-medium border border-violet-200 flex-none">
           GitHub Synced
         </span>
       </div>
 
       <div className="space-y-3">
         <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 space-y-2">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold text-slate-900">feat: billing checkout &amp; webhook credits</p>
-            <span className="text-[10px] font-mono text-slate-500">today</span>
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-bold text-slate-900 truncate">feat: billing checkout &amp; webhook credits</p>
+            <span className="text-[10px] font-mono text-slate-500 flex-none">today</span>
           </div>
           <ul className="text-xs text-slate-600 space-y-1 list-disc list-inside">
             <li>Integrated Stripe Checkout sessions for one-time credit top-ups</li>
@@ -225,9 +224,9 @@ export function CommitsMockup() {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 space-y-2">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold text-slate-900">refactor: per-project token authentication</p>
-            <span className="text-[10px] font-mono text-slate-500">yesterday</span>
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-bold text-slate-900 truncate">refactor: per-project token authentication</p>
+            <span className="text-[10px] font-mono text-slate-500 flex-none">yesterday</span>
           </div>
           <p className="text-xs text-slate-600 leading-relaxed">
             Allows repository owners to provide fine-grained GitHub PATs for private repos and 5,000 req/hr rate limits.
@@ -241,21 +240,21 @@ export function CommitsMockup() {
 // 4. Meetings Mockup
 export function MeetingsMockup() {
   return (
-    <div className="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-lg space-y-3.5 text-slate-900">
+    <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 sm:p-5 shadow-lg space-y-3.5 text-slate-900 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <Headphones className="size-4 text-emerald-600" />
+          <Headphones className="size-4 text-emerald-600 flex-none" />
           <span className="text-xs font-semibold font-brand text-slate-900">Meeting Audio Intelligence</span>
         </div>
-        <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium border border-emerald-200">
+        <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium border border-emerald-200 flex-none">
           AssemblyAI + Gemini
         </span>
       </div>
 
       <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-slate-900">Architecture Sprint Discussion.mp3</span>
-          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <span className="text-xs font-semibold text-slate-900 truncate">Architecture Sprint Discussion.mp3</span>
+          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded flex-none">
             Processed
           </span>
         </div>
@@ -263,20 +262,20 @@ export function MeetingsMockup() {
         <div className="space-y-2">
           <div className="rounded-lg border border-slate-200 bg-white p-2 text-xs">
             <div className="flex items-center gap-2 font-mono text-[10px] text-emerald-700">
-              <Play className="size-2.5 fill-emerald-600" />
+              <Play className="size-2.5 fill-emerald-600 flex-none" />
               <span>08:24 &bull; Chapter: Vector Embedding Strategy</span>
             </div>
-            <p className="mt-1 text-slate-600">
+            <p className="mt-1 text-slate-600 leading-relaxed">
               Team agreed to embed the first 3,000 characters of each source file with Gemini embeddings and pgvector.
             </p>
           </div>
 
           <div className="rounded-lg border border-indigo-200 bg-indigo-50/70 p-2 text-xs">
             <div className="flex items-center gap-2 font-mono text-[10px] text-indigo-700">
-              <Play className="size-2.5 fill-indigo-600" />
+              <Play className="size-2.5 fill-indigo-600 flex-none" />
               <span>18:40 &bull; Action Issue Created</span>
             </div>
-            <p className="mt-1 font-medium text-slate-900">
+            <p className="mt-1 font-medium text-slate-900 leading-relaxed">
               Issue #4: Enforce max 120 files indexing threshold to respect API credits
             </p>
           </div>
@@ -289,25 +288,25 @@ export function MeetingsMockup() {
 // 5. Team Knowledge Mockup
 export function TeamKnowledgeMockup() {
   return (
-    <div className="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-lg space-y-3.5 text-slate-900">
+    <div className="rounded-2xl border border-slate-200/90 bg-white p-3.5 sm:p-5 shadow-lg space-y-3.5 text-slate-900 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2">
-          <Users className="size-4 text-indigo-600" />
+          <Users className="size-4 text-indigo-600 flex-none" />
           <span className="text-xs font-semibold font-brand text-slate-900">Shared Team Workspace</span>
         </div>
-        <span className="text-[10px] font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200">
+        <span className="text-[10px] font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-200 flex-none">
           Owner &bull; Member Roles
         </span>
       </div>
 
       {/* Shareable Invite Pill */}
       <div className="rounded-xl border border-indigo-200 bg-indigo-50/60 p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-        <div>
+        <div className="min-w-0">
           <p className="text-xs font-bold text-slate-900">Shareable Project Invite</p>
-          <p className="text-[11px] text-slate-600">Anyone with this link joins the repository workspace instantly</p>
+          <p className="text-[11px] text-slate-600 leading-snug">Anyone with this link joins the repository workspace instantly</p>
         </div>
-        <div className="flex items-center gap-2 bg-white border border-slate-200 px-2.5 py-1 rounded-md text-xs font-mono text-slate-600 shadow-2xs">
-          <span className="truncate max-w-[150px]">/join/cmvmc...</span>
+        <div className="flex items-center justify-between gap-2 bg-white border border-slate-200 px-2.5 py-1 rounded-md text-xs font-mono text-slate-600 shadow-2xs self-start sm:self-auto shrink-0">
+          <span className="truncate max-w-[140px]">/join/cmvmc...</span>
           <Copy className="size-3 text-indigo-600 flex-none" />
         </div>
       </div>
@@ -318,28 +317,28 @@ export function TeamKnowledgeMockup() {
           Saved Questions Archive
         </p>
 
-        <div className="rounded-lg border border-slate-200 bg-slate-50/60 p-2.5 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2.5">
-            <MessageSquare className="size-3.5 text-indigo-600" />
-            <div>
-              <p className="font-medium text-slate-900">How do background webhooks handle retries?</p>
+        <div className="rounded-lg border border-slate-200 bg-slate-50/60 p-2.5 flex items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <MessageSquare className="size-3.5 text-indigo-600 flex-none" />
+            <div className="min-w-0">
+              <p className="font-medium text-slate-900 truncate">How do background webhooks handle retries?</p>
               <p className="text-[10px] text-slate-500">Asked by Alex &bull; 3 code citations</p>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">
+          <span className="text-[10px] font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 flex-none">
             Verified
           </span>
         </div>
 
-        <div className="rounded-lg border border-slate-200 bg-slate-50/60 p-2.5 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2.5">
-            <MessageSquare className="size-3.5 text-violet-600" />
-            <div>
-              <p className="font-medium text-slate-900">Where is the Gemini embedding vector dimension configured?</p>
+        <div className="rounded-lg border border-slate-200 bg-slate-50/60 p-2.5 flex items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <MessageSquare className="size-3.5 text-violet-600 flex-none" />
+            <div className="min-w-0">
+              <p className="font-medium text-slate-900 truncate">Where is the Gemini embedding vector dimension configured?</p>
               <p className="text-[10px] text-slate-500">Asked by Sarah &bull; 2 code citations</p>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">
+          <span className="text-[10px] font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 flex-none">
             Verified
           </span>
         </div>

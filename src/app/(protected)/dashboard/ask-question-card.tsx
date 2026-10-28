@@ -154,42 +154,42 @@ export default function AskQuestionCard({
         <>
             {/* Larger Than Life Synthesis Dialog */}
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="flex max-h-[92vh] w-full flex-col gap-0 overflow-hidden border border-border/80 p-0 shadow-2xl sm:max-w-5xl lg:max-w-6xl">
+                <DialogContent className="flex max-h-[94dvh] w-[95vw] sm:w-full flex-col gap-0 overflow-hidden border border-border/80 p-0 shadow-2xl sm:max-w-5xl lg:max-w-6xl rounded-2xl">
                     {/* Dialog Header with Tagline & High-Tech Accents */}
-                    <DialogHeader className="bg-gradient-to-b from-muted/50 via-muted/20 to-background border-b p-6 pr-14">
-                        <div className="flex flex-col gap-4">
+                    <DialogHeader className="bg-gradient-to-b from-muted/50 via-muted/20 to-background border-b p-4 sm:p-6 pr-12 sm:pr-14">
+                        <div className="flex flex-col gap-3.5 sm:gap-4">
                             {/* Badge & Engine Meta */}
                             <div className="flex flex-wrap items-center justify-between gap-2">
-                                <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary">
-                                    <Sparkles className="size-3.5 animate-pulse text-primary" />
+                                <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold tracking-wide text-primary">
+                                    <Sparkles className="size-3.5 animate-pulse text-primary flex-none" />
                                     <span>ENGRAM NEURAL SYNTHESIS</span>
-                                    <span className="text-muted-foreground/60">•</span>
-                                    <span className="text-muted-foreground font-normal">AST & Embeddings Active</span>
+                                    <span className="text-muted-foreground/60 hidden xs:inline">•</span>
+                                    <span className="text-muted-foreground font-normal hidden xs:inline">AST &amp; Embeddings</span>
                                 </div>
 
                                 <div className="flex items-center gap-2">
                                     {loading ? (
-                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
-                                            <Loader2 className="size-3 animate-spin" />
-                                            Synthesizing Response...
+                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-[11px] sm:text-xs font-medium text-amber-600 dark:text-amber-400">
+                                            <Loader2 className="size-3 animate-spin flex-none" />
+                                            <span>Synthesizing...</span>
                                         </span>
                                     ) : (
-                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                                            <ShieldCheck className="size-3.5" />
-                                            Grounded in your source code
+                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] sm:text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                                            <ShieldCheck className="size-3.5 flex-none" />
+                                            <span>Grounded in source code</span>
                                         </span>
                                     )}
                                 </div>
                             </div>
 
                             {/* Title, Tagline & Action Buttons */}
-                            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                                 <div className="space-y-1">
-                                    <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
-                                        <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                            <Image src="/engram-icon.svg" alt="Engram" width={22} height={22} />
+                                    <DialogTitle className="text-lg sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+                                        <div className="flex size-7 sm:size-8 items-center justify-center rounded-lg bg-primary/10 text-primary flex-none">
+                                            <Image src="/engram-icon.svg" alt="Engram" width={20} height={20} />
                                         </div>
-                                        Engram Code Intelligence
+                                        <span>Engram Code Intelligence</span>
                                     </DialogTitle>
                                     <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl font-normal leading-relaxed">
                                         our codebase’s memory. Synthesizing high-precision architectural insights directly from your repository&apos;s AST, vectors, and commit graph.
@@ -202,10 +202,10 @@ export default function AskQuestionCard({
                                         size="sm"
                                         disabled={!answer || loading}
                                         onClick={copyAnswer}
-                                        className="h-8 gap-1.5 text-xs font-medium hover:bg-muted"
+                                        className="h-8 gap-1.5 text-xs font-medium hover:bg-muted touch-friendly"
                                     >
                                         {copied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
-                                        {copied ? "Copied" : "Copy"}
+                                        <span>{copied ? "Copied" : "Copy"}</span>
                                     </Button>
 
                                     <Button
@@ -232,34 +232,34 @@ export default function AskQuestionCard({
                                                 },
                                             )
                                         }
-                                        className="h-8 gap-1.5 bg-primary text-primary-foreground text-xs font-medium shadow-sm hover:opacity-90"
+                                        className="h-8 gap-1.5 bg-primary text-primary-foreground text-xs font-medium shadow-sm hover:opacity-90 touch-friendly"
                                     >
                                         {saveAnswer.isPending ? (
                                             <Loader2 className="size-3.5 animate-spin" />
                                         ) : (
                                             <Bookmark className="size-3.5" />
                                         )}
-                                        Save to Archive
+                                        <span>Save to Archive</span>
                                     </Button>
                                 </div>
                             </div>
 
                             {/* Inquired Question Spotlight Box */}
-                            <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-primary/[0.03] p-3.5 transition-colors">
-                                <div className="flex items-start gap-3">
-                                    <div className="bg-primary/10 text-primary flex size-6 flex-none items-center justify-center rounded-md font-mono text-xs font-bold">
+                            <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-primary/[0.03] p-3 sm:p-3.5 transition-colors">
+                                <div className="flex items-start gap-2.5 sm:gap-3">
+                                    <div className="bg-primary/10 text-primary flex size-6 flex-none items-center justify-center rounded-md font-mono text-xs font-bold mt-0.5">
                                         ?
                                     </div>
                                     <div className="min-w-0 flex-1">
                                         <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                                             Inquired Question
                                         </span>
-                                        <p className="mt-0.5 text-sm font-medium text-foreground line-clamp-2">
+                                        <p className="mt-0.5 text-xs sm:text-sm font-medium text-foreground line-clamp-2">
                                             {askedQuestion}
                                         </p>
                                     </div>
                                     {filesReferences.length > 0 && (
-                                        <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground bg-muted/60 px-2 py-0.5 rounded-md border">
+                                        <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground bg-muted/60 px-2 py-0.5 rounded-md border flex-none">
                                             <FileCode2 className="size-3 text-primary" />
                                             <span>{filesReferences.length} files cited</span>
                                         </div>
@@ -270,9 +270,9 @@ export default function AskQuestionCard({
                     </DialogHeader>
 
                     {/* Dialog Body */}
-                    <div className="flex-1 space-y-6 overflow-y-auto p-6">
+                    <div className="flex-1 space-y-4 sm:space-y-6 overflow-y-auto p-3.5 sm:p-6">
                         {/* Answer Box */}
-                        <div className="relative rounded-2xl border bg-card p-6 shadow-sm">
+                        <div className="relative rounded-2xl border bg-card p-3.5 sm:p-6 shadow-sm">
                             <div className="mb-4 flex items-center justify-between border-b pb-3">
                                 <div className="flex items-center gap-2">
                                     <div className="flex size-5 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -329,7 +329,7 @@ export default function AskQuestionCard({
                     </div>
 
                     {/* High-Tech Dialog Footer */}
-                    <div className="flex items-center justify-between border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 border-t bg-muted/30 px-4 sm:px-6 py-2.5 sm:py-3 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1.5 font-mono text-[11px]">
                             <span className="size-1.5 rounded-full bg-emerald-500" />
                             Engram Intelligence • Live Project Grounding
@@ -344,21 +344,21 @@ export default function AskQuestionCard({
             {/* Main Ask Card UI */}
             <Card
                 className={cn(
-                    "relative overflow-hidden border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.02] shadow-sm transition-all hover:shadow-md",
+                    "relative overflow-hidden border border-border/80 bg-gradient-to-br from-card via-card to-primary/[0.02] shadow-xs transition-all hover:shadow-md",
                     className ?? "w-full",
                 )}
             >
-                <CardHeader className="pb-3">
+                <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
-                            <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary flex-none">
                                 <Sparkles className="size-4" />
                             </div>
                             <div>
-                                <CardTitle className="text-base sm:text-lg font-semibold tracking-tight">
+                                <CardTitle className="text-sm sm:text-lg font-semibold tracking-tight">
                                     Ask <span className="text-primary font-bold">Engram</span>
                                 </CardTitle>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-[11px] sm:text-xs text-muted-foreground">
                                     our codebase’s memory &bull; Query architecture, logic, and execution paths.
                                 </p>
                             </div>
@@ -371,7 +371,7 @@ export default function AskQuestionCard({
                     </div>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0 space-y-3 sm:space-y-4">
                     <form ref={formRef} onSubmit={onSubmit} className="space-y-3">
                         <div className="relative">
                             <Textarea
@@ -387,21 +387,20 @@ export default function AskQuestionCard({
                                     }
                                 }}
                                 rows={3}
-                                className="min-h-[90px] resize-none border-muted-foreground/20 bg-background/50 pr-4 text-sm leading-relaxed transition-all focus-visible:border-primary/50 focus-visible:ring-1 focus-visible:ring-primary/40"
+                                className="min-h-[80px] sm:min-h-[90px] resize-none border-muted-foreground/20 bg-background/50 pr-4 text-xs sm:text-sm leading-relaxed transition-all focus-visible:border-primary/50 focus-visible:ring-1 focus-visible:ring-primary/40"
                             />
                         </div>
 
                         {/* Quick Starters Tray */}
                         {showQuickPrompts && (
                             <div className="space-y-1.5 pt-1">
-                                
                                 <div className="flex flex-wrap gap-1.5">
                                     {QUICK_PROMPTS.map((prompt) => (
                                         <button
                                             key={prompt}
                                             type="button"
                                             onClick={() => handleQuickPrompt(prompt)}
-                                            className="rounded-lg border border-border/80 bg-muted/40 px-2.5 py-1 text-left text-xs font-normal text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-foreground"
+                                            className="rounded-lg border border-border/80 bg-muted/40 px-2.5 py-1 text-left text-[11px] sm:text-xs font-normal text-muted-foreground transition-all hover:border-primary/40 hover:bg-primary/5 hover:text-foreground touch-friendly active:scale-95 cursor-pointer"
                                         >
                                             {prompt}
                                         </button>
@@ -419,7 +418,7 @@ export default function AskQuestionCard({
                             <Button
                                 type="submit"
                                 disabled={loading || !question.trim()}
-                                className="ml-auto gap-2 bg-primary text-primary-foreground shadow-sm hover:opacity-90"
+                                className="w-full sm:w-auto ml-auto gap-2 bg-primary text-primary-foreground shadow-sm hover:opacity-90 touch-friendly cursor-pointer active:scale-[0.98] transition-transform font-medium"
                             >
                                 {loading ? (
                                     <>

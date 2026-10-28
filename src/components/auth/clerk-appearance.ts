@@ -11,7 +11,7 @@ export const engramClerkAppearance = {
   },
   elements: {
     rootBox: "w-full mx-auto flex justify-center",
-    card: "shadow-xl shadow-slate-200/50 border border-slate-200/90 rounded-2xl bg-white p-6 sm:p-8 w-full max-w-md",
+    card: "shadow-xl shadow-slate-200/50 border border-slate-200/90 rounded-2xl bg-white p-4 sm:p-8 w-full max-w-md",
     headerTitle: "text-slate-950 font-brand font-bold text-2xl tracking-tight",
     headerSubtitle: "text-slate-500 text-sm",
     socialButtonsBlockButton:
